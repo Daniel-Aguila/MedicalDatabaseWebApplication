@@ -15,7 +15,7 @@ var Employee = function(employee){
 
 // get all employees
 Employee.getAllEmployees = (result) =>{
-    dbConn.query('SELECT * FROM employees WHERE is_deleted=0', (err, res)=>{
+    dbConn.query('SELECT * FROM user', (err, res)=>{
         if(err){
             console.log('Error while fetching employess', err);
             result(null,err);
