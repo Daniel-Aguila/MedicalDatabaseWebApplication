@@ -10,11 +10,17 @@ router.get('/', (reg,res)=>{
 // get all staffs
 router.get('/', (staffController.getStaffList));
 
+// create new Staff
+router.get('/new', (req,res)=>{
+    res.render('./new/newStaff');
+})
+
+router.post('/new', staffController.createNewStaff);
+
 // get Staff by ID
 router.get('/:id',staffController.getStaffByID);
 
-// create new Staff
-router.post('/', staffController.createNewStaff);
+
 
 // update staff
 router.put('/:id', staffController.updateStaff);

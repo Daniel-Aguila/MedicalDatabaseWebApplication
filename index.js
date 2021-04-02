@@ -15,7 +15,7 @@ app.set('view engine', 'pug');
 const port = process.env.PORT || 5000;
 
 // parse request data content type application/x-www-form-rulencoded
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // parse request data content type application/json
 app.use(bodyParser.json());
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //define root route
 app.get('/', (req, res)=>{
-    res.send('Hello World');
+    res.render('home', {error: false});
 });
 
 // import staff routes
