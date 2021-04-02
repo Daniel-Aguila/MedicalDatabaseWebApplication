@@ -29,10 +29,10 @@ const officesRoutes = require('./src/routes/offices.route');
 // create offices routes
 app.use('/api/v1/offices', officesRoutes);
 
-//import serviceBooked routes
-const serviceBookedRoutes = require('./src/routes/serviceBooked.route');
-//create serviceBooked routes
-app.use('/api/v1/offices', serviceBookedRoutes);
+// //import serviceBooked routes
+// const serviceBookedRoutes = require('./src/routes/serviceBooked.route');
+// //create serviceBooked routes
+// app.use('/api/v1/offices', serviceBookedRoutes);
 
 // import patient routes
 const patientRoutes = require('./src/routes/patient.route');
