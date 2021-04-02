@@ -46,7 +46,8 @@ const prescriptionRoutes = require('./src/routes/prescription.route');
 // create prescription routes
 app.use('/api/v1/prescription', prescriptionRoutes);
 
-// listen to the port
+
+// listen to the port----------------------------------------------------
 app.listen(port, ()=>{
     console.log(`Express is running at port ${port}`);
 });
