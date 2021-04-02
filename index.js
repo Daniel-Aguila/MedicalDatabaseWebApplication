@@ -46,6 +46,16 @@ const serviceBookedRoutes = require('./src/routes/serviceBooked.route');
 //create serviceBooked routes
 app.use('/api/v1/serviceBooked', serviceBookedRoutes);
 
+//import doctor routes
+const doctorRoutes = require('./src/routes/doctor.route');
+//create doctor routes
+app.use('/api/v1/doctor', doctorRoutes);
+
+//import company routes
+const companyRoutes = require('./src/routes/company.route');
+//create company routes
+app.use('/api/v1/company', companyRoutes);
+
 // import patient routes
 const patientRoutes = require('./src/routes/patient.route');
 
