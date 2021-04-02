@@ -21,7 +21,7 @@ ServiceBooked.getAllServiceBookeds = (result) =>{
 }
 
 // get ServiceBooked by appointmentID from DB
-ServiceBooked.getServiceBookedByAppointmentID = (id, result)=>{
+ServiceBooked.getServiceBookedByappointmentID = (id, result)=>{
     dbConn.query('SELECT * FROM serviceBooked WHERE appointmentID=?', id, (err, res)=>{
         if(err){
             console.log('Error while fetching serviceBooked by appointmentID', err);
