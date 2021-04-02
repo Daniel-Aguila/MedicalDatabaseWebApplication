@@ -8,7 +8,8 @@ exports.getPatientList = (req, res)=> {
     PatientModel.getAllPatient((err, patient) =>{
         console.log('We are here');
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('Patient:', patient);
         res.send(patient)
     })
@@ -19,7 +20,7 @@ exports.getPatientByID = (req, res)=>{
     //console.log('get emp by id');
     PatientModel.getPatientByID(req.params.id, (err, patient)=>{
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
         else
         console.log('Single Patient Data',patient);
         res.send(patient);
@@ -36,7 +37,7 @@ exports.createNewPatient = (req, res) =>{
     }else{
         PatientModel.createPatient(patientReqData, (err, patient)=>{
             if(err)
-                res.json({status: false, message: err, data: patient.insertId});
+            res.json({status: false, message: err});
             else
                 res.json({status: true, message: 'Patient Created Successfully', data: patient.insertId});
         })
@@ -53,7 +54,7 @@ exports.updatePatient = (req, res)=>{
     }else{
         PatientModel.updatePatient(req.params.id, patientReqData, (err, patient)=>{
             if(err)
-                res.json({status: false, message: err, data: patient.insertId});
+                res.json({status: false, message: err});
             else
                 res.json({status: true, message: 'Patient updated Successfully'});
         })
@@ -64,7 +65,7 @@ exports.updatePatient = (req, res)=>{
 exports.deletePatient = (req, res)=>{
     PatientModel.deletePatient(req.params.id, (err, patient)=>{
         if(err)
-        res.json({status: false, message: err, data: patient.insertId});
+        res.json({status: false, message: err});
         else
         res.json({success:true, message: 'Patient deleted successully!'});
     })

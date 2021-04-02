@@ -8,7 +8,8 @@ exports.getStaffList = (req, res)=> {
     StaffModel.getAllStaff((err, staff) =>{
         console.log('We are here');
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('Staff:', staff);
         res.send(staff)
     })
@@ -19,7 +20,7 @@ exports.getStaffByID = (req, res)=>{
     //console.log('get emp by id');
     StaffModel.getStaffByID(req.params.id, (err, staff)=>{
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
         else
         console.log('single staff data',staff);
         res.send(staff);
@@ -36,7 +37,7 @@ exports.createNewStaff = (req, res) =>{
     }else{
         StaffModel.createStaff(staffReqData, (err, staff)=>{
             if(err)
-                res.json({status: false, message: err, data: staff.insertId});
+                res.json({status: false, message: err});
             else
                 res.json({status: true, message: 'Staff Created Successfully', data: staff.insertId});
         })
@@ -53,7 +54,7 @@ exports.updateStaff = (req, res)=>{
     }else{
         StaffModel.updateStaff(req.params.id, staffReqData, (err, staff)=>{
             if(err)
-                res.json({status: false, message: err, data: staff.insertId});
+                res.json({status: false, message: err});
             else
                 res.json({status: true, message: 'Staff updated Successfully'});
         })
@@ -64,7 +65,7 @@ exports.updateStaff = (req, res)=>{
 exports.deleteStaff = (req, res)=>{
     StaffModel.deleteStaff(req.params.id, (err, staff)=>{
         if(err)
-        res.json({status: false, message: err, data: staff.insertId});
+        res.json({status: false, message: err});
         else
         res.json({success:true, message: 'Staff deleted successully!'});
     })

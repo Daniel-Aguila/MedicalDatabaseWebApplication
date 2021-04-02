@@ -7,7 +7,8 @@ exports.getserviceBookedList = (req, res)=> {
     ServiceBooked.getAllServiceBookeds((err, serviceBookeds) =>{
         console.log('We are here');
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('serviceBookeds', serviceBookeds);
         res.send(employees)
     })
@@ -18,7 +19,8 @@ exports.getServiceBookedByAppointmentID = (req, res)=>{
     //console.log('get emp by id');
     ServiceBooked.getServiceBookedByAppointmentID(req.params.id, (err, employee)=>{
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('single employee data',employee);
         res.send(employee);
     })
@@ -34,7 +36,8 @@ exports.createNewEmployee = (req, res) =>{
     }else{
         ServiceBooked.createEmployee(employeeReqData, (err, employee)=>{
             if(err)
-            res.send(err);
+            res.json({status: false, message: err});
+            else
             res.json({status: true, message: 'Employee Created Successfully', data: employee.insertId})
         })
     }
@@ -50,7 +53,8 @@ exports.updateEmployee = (req, res)=>{
     }else{
         ServiceBooked.updateEmployee(req.params.id, employeeReqData, (err, employee)=>{
             if(err)
-            res.send(err);
+            res.json({status: false, message: err});
+            else
             res.json({status: true, message: 'Employee updated Successfully'})
         })
     }
@@ -60,7 +64,8 @@ exports.updateEmployee = (req, res)=>{
 exports.deleteEmployee = (req, res)=>{
     ServiceBooked.deleteEmployee(req.params.id, (err, employee)=>{
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         res.json({success:true, message: 'Employee deleted successully!'});
     })
 }

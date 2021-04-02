@@ -8,7 +8,8 @@ exports.getPrescriptionList = (req, res)=> {
     PrescriptionModel.getAllPrescription((err, prescription) =>{
         console.log('We are here');
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('Prescription:', prescription);
         res.send(prescription)
     })
@@ -19,7 +20,7 @@ exports.getPrescriptionByID = (req, res)=>{
     //console.log('get emp by id');
     PrescriptionModel.getPrescriptionByID(req.params.id, (err, prescription)=>{
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
         else
         console.log('Single Prescription Data',prescription);
         res.send(prescription);
@@ -36,7 +37,7 @@ exports.createNewPrescription = (req, res) =>{
     }else{
         PrescriptionModel.createPrescription(prescriptionReqData, (err, prescription)=>{
             if(err)
-                res.json({status: false, message: err, data: prescription.insertId});
+            res.json({status: false, message: err});
             else
                 res.json({status: true, message: 'Prescription Created Successfully', data: prescription.insertId});
         })
@@ -53,7 +54,7 @@ exports.updatePrescription = (req, res)=>{
     }else{
         PrescriptionModel.updatePrescription(req.params.id, prescriptionReqData, (err, prescription)=>{
             if(err)
-                res.json({status: false, message: err, data: prescription.insertId});
+            res.json({status: false, message: err});
             else
                 res.json({status: true, message: 'Prescription updated Successfully'});
         })
@@ -64,7 +65,7 @@ exports.updatePrescription = (req, res)=>{
 exports.deletePrescription = (req, res)=>{
     PrescriptionModel.deletePrescription(req.params.id, (err, prescription)=>{
         if(err)
-        res.json({status: false, message: err, data: prescription.insertId});
+        res.json({status: false, message: err});
         else
         res.json({success:true, message: 'Prescription deleted successully!'});
     })
