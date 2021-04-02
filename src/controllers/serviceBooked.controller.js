@@ -7,7 +7,8 @@ exports.getServiceBookedList = (req, res)=> {
     ServiceBooked.getAllServiceBookeds((err, serviceBookeds) =>{
         console.log('We are here');
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('serviceBookeds', serviceBookeds);
         res.send(employees)
     })
@@ -18,7 +19,8 @@ exports.getServiceBookedByappointmentID = (req, res)=>{
     //console.log('get emp by id');
     ServiceBooked.getServiceBookedByappointmentID(req.params.id, (err, employee)=>{
         if(err)
-        res.send(err);
+        res.json({status: false, message: err});
+        else
         console.log('single employee data',employee);
         res.send(employee);
     })

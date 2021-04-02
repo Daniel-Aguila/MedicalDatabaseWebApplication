@@ -17,17 +17,34 @@ app.use(bodyParser.json());
 app.get('/', (req, res)=>{
     res.send('Hello World');
 });
-// import employee routes
-const employeeRoutes = require('./src/routes/employee.route');
+// import staff routes
+const staffRoutes = require('./src/routes/staff.route');
 
-// create employee routes
-app.use('/api/v1/employee', employeeRoutes);
+// create staff routes
+app.use('/api/v1/staff', staffRoutes);
 
 // import offices routes
 const officesRoutes = require('./src/routes/offices.route');
 
 // create offices routes
 app.use('/api/v1/offices', officesRoutes);
+
+//import serviceBooked routes
+const serviceBookedRoutes = require('./src/routes/serviceBooked.route');
+//create serviceBooked routes
+app.use('/api/v1/offices', serviceBookedRoutes);
+
+// import patient routes
+const patientRoutes = require('./src/routes/patient.route');
+
+// create patient routes
+app.use('/api/v1/patient', patientRoutes);
+
+// import prescription routes
+const prescriptionRoutes = require('./src/routes/prescription.route');
+
+// create prescription routes
+app.use('/api/v1/prescription', prescriptionRoutes);
 
 // listen to the port
 app.listen(port, ()=>{
