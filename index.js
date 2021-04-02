@@ -29,6 +29,18 @@ const officesRoutes = require('./src/routes/offices.route');
 // create offices routes
 app.use('/api/v1/offices', officesRoutes);
 
+// import notifications routes
+const notificationsRoute = require('./src/routes/notifications.route');
+
+// create notifications routes
+app.use('/api/v1/notifications', notificationsRoute);
+
+// import vaccinations routes
+const vaccinationsRoute = require('./src/routes/vaccinations.route');
+
+// create vaccinations routes
+app.use('/api/v1/vaccinations', vaccinationsRoute);
+
 //import serviceBooked routes
 const serviceBookedRoutes = require('./src/routes/serviceBooked.route');
 //create serviceBooked routes
