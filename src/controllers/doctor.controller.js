@@ -1,5 +1,5 @@
 
-const Doctor = require('../models/Doctor.model');
+const Doctor = require('../models/doctor.model');
 
 // get all employee list
 exports.getDoctorList = (req, res)=> {
@@ -15,9 +15,9 @@ exports.getDoctorList = (req, res)=> {
 }
 
 // get employee by ID
-exports.getDoctorByappointmentID = (req, res)=>{
+exports.getDoctorBydoctorID = (req, res)=>{
     //console.log('get emp by id');
-    Doctor.getDoctorByappointmentID(req.params.id, (err, employee)=>{
+    Doctor.getDoctorBydoctorID(req.params.id, (err, employee)=>{
         if(err)
         res.json({status: false, message: err});
         else
@@ -26,9 +26,9 @@ exports.getDoctorByappointmentID = (req, res)=>{
     })
 }
 
-exports.getDoctorByserviceID = (req, res)=>{
+exports.getDoctorByscheduleID = (req, res)=>{
     //console.log('get emp by id');
-    Doctor.getDoctorByserviceID(req.params.id, (err, Doctor)=>{
+    Doctor.getDoctorByscheduleID(req.params.id, (err, Doctor)=>{
         if(err)
         res.send(err);
         console.log('single employee data',Doctor);
@@ -36,9 +36,9 @@ exports.getDoctorByserviceID = (req, res)=>{
     })
 }
 
-exports.getDoctordurationID = (req, res)=>{
+exports.getDoctorSpeciality = (req, res)=>{
     //console.log('get emp by id');
-    Doctor.getDoctorBydurationID(req.params.id, (err, Doctor)=>{
+    Doctor.getDoctorBySpeciality(req.params.id, (err, Doctor)=>{
         if(err)
         res.send(err);
         console.log('single employee data',Doctor);
@@ -46,9 +46,9 @@ exports.getDoctordurationID = (req, res)=>{
     })
 }
 
-exports.getDoctorpriceID = (req, res)=>{
+exports.getDoctorisPrimary = (req, res)=>{
     //console.log('get emp by id');
-    Doctor.getDoctorBypriceID(req.params.id, (err, Doctor)=>{
+    Doctor.getDoctorByisPrimary(req.params.id, (err, Doctor)=>{
         if(err)
         res.send(err);
         console.log('single employee data',Doctor);

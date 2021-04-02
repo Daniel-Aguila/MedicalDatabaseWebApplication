@@ -7,13 +7,8 @@ const employeeController = require('../controllers/doctor.controller');
 router.get('/', employeeController.getDoctorList);
 
 // get employee by ID
-router.get('/:id',employeeController.getDoctorBydoctorID);
+router.get('/:id',employeeController.getDoctorByofficeID);
 
-router.get('/:id',employeeController.getDoctorByscheduleID);
-
-router.get('/:id',employeeController.getDoctorSpeciality);
-
-router.get('/:id',employeeController.getDoctorisPrimary);
 
 // create new employee
 router.post('/', employeeController.createNewDoctor);
