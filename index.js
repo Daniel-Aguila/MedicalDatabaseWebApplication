@@ -58,6 +58,11 @@ const prescriptionRoutes = require('./src/routes/prescription.route');
 // create prescription routes
 app.use('/api/v1/prescription', prescriptionRoutes);
 
+// import serviceProvided routes
+const serviceProvidedRoutes = require('./src/routes/serviceProvided.route');
+
+// create serviceProvided routes
+app.use('/api/v1/serviceProvided', serviceProvidedRoutes);
 
 // listen to the port----------------------------------------------------
 app.listen(port, ()=>{
