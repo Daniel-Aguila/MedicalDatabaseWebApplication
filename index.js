@@ -32,7 +32,7 @@ app.use('/api/v1/offices', officesRoutes);
 //import serviceBooked routes
 const serviceBookedRoutes = require('./src/routes/serviceBooked.route');
 //create serviceBooked routes
-app.use('/api/v1/offices', serviceBookedRoutes);
+app.use('/api/v1/serviceBooked', serviceBookedRoutes);
 
 // import patient routes
 const patientRoutes = require('./src/routes/patient.route');
