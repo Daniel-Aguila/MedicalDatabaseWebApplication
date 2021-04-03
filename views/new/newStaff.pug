@@ -1,86 +1,92 @@
-extends newLayout 
+extends ./../layout
 
-block new
-    row
-    ol.col-12.breadcrumb
-      li.breadcrumb-item
-        a(href='/') Home
-      li.breadcrumb-item.active Add
-    .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
-      form(class='form-new' method='POST' action='./new')
+block content
+    header.jumbotron
+    .container
+        .row
+        .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+            h1.text-center Add new staff
+    .container
+        row
+        ol.col-12.breadcrumb
+        li.breadcrumb-item
+            a(href='/') Home
+        li.breadcrumb-item.active Add
+        .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+        form(class='form-new' method='POST' action='./new')
 
-        .form-group.row
-          label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='staffID')
-                strong Staff ID
-          .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empid.form-control(type='int' name='staffID' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='staffID')
+                    strong Staff ID
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empid.form-control(type='int' name='staffID' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='staffType')
-                strong Staff Type
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='staffType' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='staffType')
+                    strong Staff Type
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='staffType' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='userName')
-                strong Staff username
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='userName' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='userName')
+                    strong Staff username
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='userName' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='password')
-                strong Staff password
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='password' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='password')
+                    strong Staff password
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='password' required='')
 
-        .form-group.row
-          label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='firstName')
-                strong Staff first name
-          .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='firstName' required='')
-            
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='lastName')
-                strong Staff last name
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='lastName' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='firstName')
+                    strong Staff first name
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='firstName' required='')
+                
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='lastName')
+                    strong Staff last name
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='lastName' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='email')
-                strong Staff email
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='email' name='email' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='email')
+                    strong Staff email
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='email' name='email' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='streetNumber')
-                strong Staff address street number
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='streetNumber' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='streetNumber')
+                    strong Staff address street number
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='streetNumber' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='streetName')
-                strong Staff address street name
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='streetName' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='streetName')
+                    strong Staff address street name
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='streetName' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='city')
-                strong Staff address city
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='city' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='city')
+                    strong Staff address city
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='city' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='state')
-                strong Staff address state
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='state' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='state')
+                    strong Staff address state
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='state' required='')
 
-        .form-group.row
-            label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='zipCode')
-                strong Staff address zip code
-            .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                input#empname.form-control(type='text' name='zipCode' required='')
+            .form-group.row
+                label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='zipCode')
+                    strong Staff address zip code
+                .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    input#empname.form-control(type='text' name='zipCode' required='')
 
-        .form-group.row
-          .offset-sm-2.offset-md-2.offset-lg-2.offset-xl-2.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                button.btn.btn-primary(type='submit') Add
+            .form-group.row
+            .offset-sm-2.offset-md-2.offset-lg-2.offset-xl-2.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                    button.btn.btn-primary(type='submit') Add
