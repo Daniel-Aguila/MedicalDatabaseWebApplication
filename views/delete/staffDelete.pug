@@ -1,0 +1,26 @@
+extends ./../layout
+
+block content
+    header.jumbotron
+        .container
+            .row
+                .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+                    h1.text-center Delete a staff
+    .container
+        .row
+            ol.col-12.breadcrumb
+            li.breadcrumb-item
+                a(href='/') Home
+            li.breadcrumb-item.active Delete
+                .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+            form(method='POST' action='./delete/#{staffID}')
+
+                .form-group.row
+                    label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='staffID')
+                        strong Staff ID
+                    .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                        input#empid.form-control(type='text' name='staffID' required='')
+
+                .form-group.row
+                    .offset-sm-2.offset-md-2.offset-lg-2.offset-xl-2.col-sm-10.col-md-10.col-lg-10.col-xl-10
+                        button.btn.btn-primary(type='submit') Delete
