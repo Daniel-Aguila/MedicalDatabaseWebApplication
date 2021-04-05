@@ -15,6 +15,7 @@ exports.getServiceProvidedList = (req, res)=> {
     })
 }
 
+
 // get serviceProvided by ID
 exports.getServiceProvidedByID = (req, res)=>{
     //console.log('get emp by id');

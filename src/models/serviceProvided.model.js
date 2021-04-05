@@ -22,7 +22,7 @@ ServiceProvided.getAllServiceProvided = (result) =>{
 
 // get serviceProvided by ID from DB
 ServiceProvided.getServiceProvidedByID = (id, result)=>{
-    dbConn.query('SELECT * FROM serviceProvided WHERE serviceProvidedID=?', id, (err, res)=>{
+    dbConn.query('SELECT * FROM serviceProvided WHERE serviceID=?', id, (err, res)=>{
         if(err){
             console.log('Error while fetching serviceProvided by id', err);
             result(err, err);
@@ -61,7 +61,7 @@ ServiceProvided.updateServiceProvided = (id, serviceProvidedReqData, result)=>{
 
 // delete serviceProvided
 ServiceProvided.deleteServiceProvided = (id, result)=>{
-    dbConn.query('DELETE FROM serviceProvided WHERE serviceProvidedID=?', [id], (err, res)=>{
+    dbConn.query('DELETE FROM serviceProvided WHERE serviceID=?', [id], (err, res)=>{
         if(err){
             console.log('Error while deleting the serviceProvided');
             result(err, err);
