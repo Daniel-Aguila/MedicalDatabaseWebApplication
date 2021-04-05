@@ -19,11 +19,12 @@ exports.getStaffList = (req, res)=> {
 exports.getStaffByID = (req, res)=>{
     //console.log('get emp by id');
     StaffModel.getStaffByID(req.params.id, (err, staff)=>{
+        console.log('single staff data',req.params.id);
         if(err)
         res.json({status: false, message: err});
         else
-        console.log('single staff data',staff);
         res.send(staff);
+        console.log("HERE");
     })
 }
 

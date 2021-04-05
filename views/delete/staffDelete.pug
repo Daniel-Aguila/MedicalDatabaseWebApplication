@@ -13,13 +13,13 @@ block content
                 a(href='/') Home
             li.breadcrumb-item.active Delete
                 .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
-            form(method='POST' action='./delete/#{staffID}')
+            form(method='POST' action='./delete' onSubmit ='changeFormAction(this)')
 
                 .form-group.row
-                    label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='staffID')
+                    label.col-12.col-sm-2.col-md-2.col-lg-2.col-xl-2.col-form-label(for='id')
                         strong Staff ID
                     .col-12.col-sm-10.col-md-10.col-lg-10.col-xl-10
-                        input#empid.form-control(type='text' name='staffID' required='')
+                        input#id.form-control(type='text' name='id' required='')
 
                 .form-group.row
                     .offset-sm-2.offset-md-2.offset-lg-2.offset-xl-2.col-sm-10.col-md-10.col-lg-10.col-xl-10

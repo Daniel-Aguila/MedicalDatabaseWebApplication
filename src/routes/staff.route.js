@@ -3,6 +3,13 @@ const router = express.Router();
 
 const staffController = require('../controllers/staff.controller');
 
+router.param('staffID', function(request, response, next, id){
+    console.log(
+      'id param was is detected: ',
+      id
+    )
+});
+
 // render staff front page
 router.get('/', (reg,res)=>{
     res.render('./actions/staffActions');
@@ -15,36 +22,36 @@ router.get('/new', (req,res)=>{
 
 // render update staff page
 router.get('/update', (req,res)=>{
-    res.render('./update/staffUpdate')
-})
+    res.render('./update/staffUpdate');
+});
 
 //render view staff by ID page
 router.get('/view', (req,res)=>{
-    res.render('./view/staffViewID')
-})
+    res.render('./view/staffViewID');
+});
 
 // render view all staff page
 router.get('/viewAll', (req,res)=>{
-    res.render('/viewAll/staffViewAll')
-})
+    res.render('/viewAll/staffViewAll');
+});
 
 // render delete staff page
 router.get('/delete', (req,res)=>{
     res.render('./delete/staffDelete');
 });
 
-
+console.log(this.search);
 // create new staff
 router.post('/new', staffController.createNewStaff);
 
 // view all staffs
-router.get('/view', (staffController.getStaffList));
+router.get('/viewAll', (staffController.getStaffList));
 
 // view staff by ID
-router.get('/viewAll/:id',staffController.getStaffByID);
+router.get('/view/:id',staffController.getStaffByID);
 
 // update staff
-router.put('/update/:id', staffController.updateStaff);
+router.post('/update/:id', staffController.updateStaff);
 
 // delete staff
 router.post('/delete/:id',staffController.deleteStaff);
