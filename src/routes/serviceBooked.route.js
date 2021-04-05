@@ -22,6 +22,6 @@ router.post('/', employeeController.createNewServiceBooked);
 router.put('/:id', employeeController.updateServiceBooked );
 
 // delete employee
-router.delete('/:id',employeeController.eleteServiceBooked);
+router.delete('/:id',employeeController.deleteServiceBooked);
 
 module.exports = router;

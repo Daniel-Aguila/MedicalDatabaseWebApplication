@@ -115,4 +115,4 @@ ServiceBooked.deleteServiceBooked = (id, result)=>{
     });
 }
 
-module.exports = serviceBooked;
+module.exports = ServiceBooked;
