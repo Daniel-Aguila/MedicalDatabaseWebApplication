@@ -36,6 +36,7 @@ Staff.getStaffByID = (id, result)=>{
             result(err, err);
         }else{
             result(null, res);
+            console.log("Staff fetched successfully");
         }
     })
 }

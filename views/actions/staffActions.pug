@@ -1,0 +1,23 @@
+extends ./../layout
+
+block content
+  header.jumbotron
+    .container
+      .row
+        .col-12.col-sm-12.col-md-12.col-lg-12.col-xl-12
+          h1.text-center Staff
+  .container
+    .row
+      #jumbo.col-12.col-sm-5.col-md-5.col-lg-5.col-xl-5.text-center
+        button.btn.btn-success(type='button')
+          a(href='./staff/new' style='text-decoration: none; color: #FFFFFF') Add new staff
+      #jumbo.col-12.col-sm-5.col-md-5.col-lg-5.col-xl-5.offset-sm-2.offset-md-2.offset-lg-2.offset-xl-2.text-center
+        button.btn.btn-warning(type='button')
+          a(href='./staff/update' style='text-decoration: none; color: #FFFFFF') Modify a staff
+    .row
+      #jumbo.col-12.col-sm-5.col-md-5.col-lg-5.col-xl-5.text-center
+        button.btn.btn-info(type='button')
+          a(href='./staff/view' style='text-decoration: none; color: #FFFFFF') View a staff
+      #jumbo.col-12.col-sm-5.col-md-5.col-lg-5.col-xl-5.offset-sm-2.offset-md-2.offset-lg-2.offset-xl-2.text-center
+        button.btn.btn-danger(type='button')
+          a(href='./staff/delete' style='text-decoration: none; color: #FFFFFF') Delete a staff
