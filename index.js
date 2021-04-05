@@ -68,11 +68,20 @@ const prescriptionRoutes = require('./src/routes/prescription.route');
 // create prescription routes
 app.use('/api/v1/prescription', prescriptionRoutes);
 
-// import serviceProvided routes
-const serviceProvidedRoutes = require('./src/routes/serviceProvided.route');
-
-// create serviceProvided routes
-app.use('/api/v1/serviceProvided', serviceProvidedRoutes);
+// import employee routes
+const userRoutes = require('./src/routes/user.route');
+const serviceRoutes = require('./src/routes/service.route');
+const specialtyRoute = require('./src/routes/specialty.route');
+const invoiceRoute = require('./src/routes/invoice.route');
+const appointmentRoute = require('./src/routes/appointments.route');
+const serviceProvidedRoute = require('./src/routes/serviceProvided.route');
+// create employee routes
+app.use('/api/user', userRoutes);
+app.use('/api/service', serviceRoutes);
+app.use('/api/specialty', specialtyRoute);
+app.use('/api/invoice', invoiceRoute);
+app.use('/api/appointment', appointmentRoute);
+app.use('/api/serviceProvided', serviceProvidedRoute);
 
 // listen to the port----------------------------------------------------
 app.listen(port, ()=>{
