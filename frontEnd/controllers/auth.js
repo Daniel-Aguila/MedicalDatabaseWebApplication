@@ -13,7 +13,7 @@ const db = mysql.createConnection({
 exports.login = async(req, res) =>{
     try {
         const { email, password } = req.body;
-
+        console.log("hi")
         if(!email || !password){
             return res.status(400).render('login', {
                 message: 'Please provide an email and password'
@@ -46,6 +46,7 @@ exports.login = async(req, res) =>{
                     httpOnly: true
                 }
                 res.cookie('jwt', token, cookieOptions);
+                res.json({ token });
                 res.status(200).redirect("/");
             }
         })

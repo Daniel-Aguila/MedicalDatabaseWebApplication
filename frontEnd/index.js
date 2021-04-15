@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const app = express();
+const cors = require('cors');
 
 const db = mysql.createConnection({
     host: '178.128.70.9',
