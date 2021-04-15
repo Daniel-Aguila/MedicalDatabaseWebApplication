@@ -11,4 +11,5 @@ router.post('/homePageAfterLogin/doctorRegister', authController.doctorRegister)
 
 router.post('/homePageAfterLogin/patientRegister', authController.patientRegister)
 
+router.post('/homePageAfterLogin/staffRegister', authController.patientRegister)
 module.exports = router;

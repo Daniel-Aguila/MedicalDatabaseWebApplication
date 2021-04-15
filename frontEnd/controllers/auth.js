@@ -156,3 +156,29 @@ exports.patientRegister = (req, res) => {
         })
     });
 }
+
+exports.staffRegister = (req, res) => {
+    console.log(req.body);
+    const { staffType,password,firstName,lastName,streetName,email,streetNumber,city,state,zipcode } = req.body;
+
+    //Import database
+    db.query('SELECT staffType FROM staff WHERE staffType = ?', [staffType], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        //we are using await because it can take a bit to encrypt some passwords
+        //we are using 8 rounds of encryption
+
+        db.query('INSERT INTO staff SET ?', {staffType: staffType, password: password, firstName:firstName, lastName: lastName, streetName: streetName, email: email,streetNumber: streetNumber,city:city,state:state,zipcode:zipcode}, (error, results)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(results);
+                return res.render('staffRegister', {
+                    message: 'Staff registered'
+                });
+            }
+        })
+    });
+}

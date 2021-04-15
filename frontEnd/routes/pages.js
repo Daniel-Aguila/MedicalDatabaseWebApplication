@@ -26,4 +26,8 @@ router.get('/homePageAfterLogin/patientRegister', (req,res)=>{
     res.render('patientRegister');
 });
 
+router.get('/homePageAfterLogin/staffRegister', (req,res)=>{
+    res.render('staffRegister');
+});
+
 module.exports = router;
