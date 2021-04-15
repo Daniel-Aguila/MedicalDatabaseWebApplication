@@ -7,4 +7,8 @@ router.post('/register', authController.register)
 
 router.post('/login', authController.login)
 
+router.post('/homePageAfterLogin/doctorRegister', authController.doctorRegister)
+
+router.post('/homePageAfterLogin/patientRegister', authController.patientRegister)
+
 module.exports = router;

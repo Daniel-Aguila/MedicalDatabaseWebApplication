@@ -11,9 +11,9 @@
     <nav>
         <h3>Medical Database</h3>
         <ul>
-            <li><a href="/"></a>Home</li>
-            <li><a href="/login"></a>Login</li>
-            <li><a href="/register"></a>Register</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
         </ul>
     </nav>
 
@@ -26,22 +26,64 @@
                 <form action="/auth/register" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" required="true"/>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required="true"/>
+                        <small>Format: xxx-xxx-xxxx</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" class="form-control" id="gender" name="gender" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="streetNumber">Street Number</label>
+                        <input type="number" class="form-control" id="streetNumber" name="streetNumber" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="streetName">Street Name</label>
+                        <input type="text" class="form-control" id="streetName" name="streetName" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state" minlength="2" maxlength="2" required="true"/>
+                        <small>Format: XX</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Zipcode</label>
+                        <input type="number" class="form-control" id="zipcode" name="zipcode" minlength="5" maxlength="5" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aptNum">aptNumber</label>
+                        <input type="number" class="form-control" id="aptNum" name="aptNum"/>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required="true"/>
                     </div>
 
                     <div class="form-group">
                         <label for="passwordConfirm">Confirm Password</label>
-                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required="true"/>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Register User</button>

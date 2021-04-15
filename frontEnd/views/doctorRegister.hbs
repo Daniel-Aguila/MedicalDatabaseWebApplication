@@ -11,30 +11,27 @@
     <nav>
         <h3>Medical Database</h3>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            <li><a href="/homePageAfterLogin">Home</a></li>
         </ul>
     </nav>
 
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                Login Form
+                Doctor Register Form
             </div>
             <div class="card-body">
-                <form action="/auth/login" method="POST">
+                <form action="/auth/homePageAfterLogin/doctorRegister" method="POST">
                     <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" name="email" required="true">
+                        <label for="Speciality">Speciality</label>
+                        <input type="number" class="form-control" id="Speciality" name="Speciality" required="true"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required="true">
+                        <label for="isPrimary">isPrimary</label>
+                        <input type="number" class="form-control" id="isPrimary" name="isPrimary" required="true"/>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Register Doctor</button>
                 </form>
             </div>
         </div>

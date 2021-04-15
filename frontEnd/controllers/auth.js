@@ -13,7 +13,6 @@ const db = mysql.createConnection({
 exports.login = async(req, res) =>{
     try {
         const { email, password } = req.body;
-        console.log("hi")
         if(!email || !password){
             return res.status(400).render('login', {
                 message: 'Please provide an email and password'
@@ -46,8 +45,8 @@ exports.login = async(req, res) =>{
                     httpOnly: true
                 }
                 res.cookie('jwt', token, cookieOptions);
-                res.json({ token });
-                res.status(200).redirect("/");
+                //res.json({ token });
+                res.status(200).redirect("/homePageAfterLogin");
             }
         })
 
@@ -68,7 +67,7 @@ exports.register = (req, res) => {
     //For example in the html the form input for email is named "email" and since we are naming our const variable
     //"email", we can just follow that logic for all the other variables and the line below is a shorter method of doing
     //the line above
-    const { name, email, password, passwordConfirm } = req.body;
+    const { name, email, phoneNumber, gender, streetName, streetNumber, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
 
     //Import database
     db.query('SELECT emailAddress FROM user WHERE emailAddress = ?', [email], async(error, results) => {
@@ -92,7 +91,7 @@ exports.register = (req, res) => {
         let hashedPassword = await bcrypt.hash(password, 8);
         console.log(hashedPassword);
 
-        db.query('INSERT INTO user SET ?', {name: name, emailAddress: email, password: hashedPassword }, (error, results)=>{
+        db.query('INSERT INTO user SET ?', {name: name, emailAddress: email, phoneNumber: phoneNumber, gender: gender, streetName: streetName, streetNumber: streetNumber, city: city, state: state, zipcode: zipcode, aptNum: aptNum, password: hashedPassword }, (error, results)=>{
             if(error){
                 console.log(error);
             }
@@ -100,6 +99,58 @@ exports.register = (req, res) => {
                 console.log(results);
                 return res.render('register', {
                     message: 'User registered'
+                });
+            }
+        })
+    });
+}
+
+exports.doctorRegister = (req, res) => {
+    console.log(req.body);
+    const { Speciality, isPrimary } = req.body;
+
+    //Import database
+    db.query('SELECT Speciality FROM doctor WHERE Speciality = ?', [Speciality], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        //we are using await because it can take a bit to encrypt some passwords
+        //we are using 8 rounds of encryption
+
+        db.query('INSERT INTO doctor SET ?', {Speciality: Speciality, isPrimary:isPrimary }, (error, results)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(results);
+                return res.render('doctorRegister', {
+                    message: 'Doctor registered'
+                });
+            }
+        })
+    });
+}
+
+exports.patientRegister = (req, res) => {
+    console.log(req.body);
+    const { firstName, lastName,dateOfBirth,bloodType,sex,insurance } = req.body;
+
+    //Import database
+    db.query('SELECT firstName FROM patient WHERE firstName = ?', [firstName], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        //we are using await because it can take a bit to encrypt some passwords
+        //we are using 8 rounds of encryption
+
+        db.query('INSERT INTO patient SET ?', {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, bloodType: bloodType, sex: sex, insurance: insurance}, (error, results)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(results);
+                return res.render('patientRegister', {
+                    message: 'Patient registered'
                 });
             }
         })
