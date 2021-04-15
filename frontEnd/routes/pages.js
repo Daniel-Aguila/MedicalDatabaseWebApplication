@@ -22,7 +22,7 @@ router.get('/homePageAfterLogin/doctorRegister', (req,res)=>{
     res.render('doctorRegister');
 });
 
-router.get('/homePageAfterLogin/patientRegister', (req,res)=>{
+router.get('/homePageAfterLogin/patientPage/patientRegister', (req,res)=>{
     res.render('patientRegister');
 });
 
@@ -30,4 +30,7 @@ router.get('/homePageAfterLogin/staffRegister', (req,res)=>{
     res.render('staffRegister');
 });
 
+router.get('/homePageAfterLogin/patientPage', (req,res)=>{
+    res.render('patientPage');
+});
 module.exports = router;
