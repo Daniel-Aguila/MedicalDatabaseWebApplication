@@ -11,18 +11,17 @@
     <nav>
         <h3>Medical Database</h3>
         <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="/register">Home</a></li>
         </ul>
     </nav>
 
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                Staff Form
+                Staff Register Form
             </div>
             <div class="card-body">
-                <form action="/auth/homePageAfterLogin/staffRegister" method="POST">
-
+                <form action="/auth/register/staffRegister" method="POST">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" class="form-control" id="firstName" name="firstName" required="true"/>
@@ -36,11 +35,6 @@
                     <div class="form-group">
                         <label for="staffType">Staff Type</label>
                         <input type="text" class="form-control" id="staffType" name="staffType" required="true"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" name="email" required="true"/>
                     </div>
 
                     <div class="form-group">

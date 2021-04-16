@@ -11,7 +11,7 @@
     <nav>
         <h3>Medical Database</h3>
         <ul>
-            <li><a href="/homePageAfterLogin">Home</a></li>
+            <li><a href="/register">Home</a></li>
         </ul>
     </nav>
 
@@ -21,7 +21,7 @@
                 Patient Register Form
             </div>
             <div class="card-body">
-                <form action="/auth/homePageAfterLogin/doctorRegister" method="POST">
+                <form action="/auth/register/patientRegister" method="POST">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" class="form-control" id="firstName" name="firstName" required="true"/>
@@ -51,6 +51,63 @@
                     <div class="form-group">
                         <label for="insurance">Insurance</label>
                         <input type="text" class="form-control" id="insurance" name="insurance" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required="true"/>
+                        <small>Format: xxx-xxx-xxxx</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" class="form-control" id="gender" name="gender" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="streetNumber">Street Number</label>
+                        <input type="number" class="form-control" id="streetNumber" name="streetNumber" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="streetName">Street Name</label>
+                        <input type="text" class="form-control" id="streetName" name="streetName" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state" minlength="2" maxlength="2" required="true"/>
+                        <small>Format: XX</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Zipcode</label>
+                        <input type="number" class="form-control" id="zipcode" name="zipcode" minlength="5" maxlength="5" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aptNum">aptNumber</label>
+                        <input type="number" class="form-control" id="aptNum" name="aptNum"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordConfirm">Confirm Password</label>
+                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required="true"/>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Register Patient</button>
