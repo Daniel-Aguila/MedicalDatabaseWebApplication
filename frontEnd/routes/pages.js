@@ -10,6 +10,18 @@ router.get('/register', (req,res)=>{
     res.render('register');
 });
 
+router.get('/patient/home', (req,res)=>{
+    res.render('patientHome');
+});
+
+router.get('/patient/scheduleAppointment', (req,res)=>{
+    res.render('patientScheduleAppointment');
+});
+
+router.get('/patient/appointmentHistory', (req,res)=>{
+    res.render('patientAppointmentHistory');
+});
+
 router.get('/login', (req,res)=>{
     res.render('login');
 });
