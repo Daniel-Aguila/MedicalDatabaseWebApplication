@@ -110,7 +110,7 @@ exports.doctorRegister = (req, res) => {
     const { Speciality,firstName, lastName,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
     let hashedPassword = ""
     //Import database
-    db.query('SELECT Speciality FROM doctor WHERE Speciality = ?', [Speciality], async(error, results) => {
+    db.query('SELECT firstName FROM doctor WHERE firstName = ?', [firstName], async(error, results) => {
         if(error){
             console.log(error);
         }
@@ -121,7 +121,7 @@ exports.doctorRegister = (req, res) => {
             })
         }
         else if(password !== passwordConfirm){
-            return res.render('patientRegister', {
+            return res.render('doctorRegister', {
                 message: 'Passwords do not match'
             });
         }
@@ -150,8 +150,8 @@ exports.doctorRegister = (req, res) => {
             }
             else{
                 console.log(results);
-                return res.render('patientRegister', {
-                    message: 'Patient registered'
+                return res.render('doctorRegister', {
+                    message: 'Doctor registered'
                 });
             }
         })
