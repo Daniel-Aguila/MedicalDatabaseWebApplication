@@ -9,7 +9,24 @@ const db = mysql.createConnection({
     database: 'mydb'
 })
 
-exports.cancelAppt = (req,res)=>{
+exports.scheduleAppointment = (req,res)=>{
+
+    const {time, date, doctor} = req.body;
+    console.log(time, date, doctor);
+    res.render('patientScheduleAppointment', {
+        message: 'Appointment Scheduled successfully (No Database Insertion)'
+    })
+    // db.query('INSERT INTO appointments SET ?', req, async(error, results) => {
+    //     if(error){
+    //         console.log(error);
+    //     }
+    //     else{
+    //         console.log(results);
+    //     }
+    // });
+}
+
+exports.cancelAppointment = (req,res)=>{
 
     const {appointmentID, startTime, doctorID} = req.body;
     db.query('UPDATE FROM appointments WHERE appointmentID = ?', [{isCancelled:1}, appointmentID], async(error, results) => {
@@ -22,11 +39,18 @@ exports.cancelAppt = (req,res)=>{
     });
 }
 
-exports.viewAppts = (req,res)=>{
+exports.viewAllAppointments = (req,res)=>{
 
     const {patientID} = req.body;
     db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments', (error, results)=>{
         res.json(results);
     });
+}
 
+exports.viewActiveAppointments = (req,res)=>{
+
+    const {patientID} = req.body;
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
+        res.json(results);
+    });
 }
