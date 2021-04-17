@@ -9,38 +9,19 @@
 </head>
 <body>
     <nav>
-        <h3>Medical Database</h3>
+        <h3>Please Login as a Doctor, a Patient or a Staff</h3>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
         </ul>
     </nav>
 
     <div class="container mt-4">
-        <div class="card">
-            <div class="card-header">
-                Login Form
-            </div>
-            <div class="card-body">
-                <form action="/auth/login" method="POST">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" name="email" required="true">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required="true">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-            </div>
+        <div class="jumbotron">
+            <h1 class="display-4">MedicalDB</h1>
+                <a class="btn btn-primary btn-lg" href="/login/doctorLogin" role="button">Doctor Login</a>
+                <a class="btn btn-primary btn-lg" href="/login/staffLogin" role="button">Staff Login</a>
+                <a class="btn btn-primary btn-lg" href="/login/patientLogin" role="button">Patient Login</a>
         </div>
-        {{#if message}}
-            <h4 class="aler alert-danger mt-4">{{message}}</h4>
-        {{/if}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

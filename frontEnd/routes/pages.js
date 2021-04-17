@@ -14,6 +14,18 @@ router.get('/login', (req,res)=>{
     res.render('login');
 });
 
+router.get('/login/doctorLogin', (req,res)=>{
+    res.render('doctorLogin');
+});
+
+router.get('/login/staffLogin', (req,res)=>{
+    res.render('staffLogin');
+});
+
+router.get('/login/patientLogin', (req,res)=>{
+    res.render('patientLogin');
+});
+
 router.get('/register/doctorRegister', (req,res)=>{
     res.render('doctorRegister');
 });
