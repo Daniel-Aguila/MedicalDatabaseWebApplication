@@ -1,6 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/auth');
 const apptController = require('../controllers/appt')
+const billController = require('../controllers/billing')
 const router = express.Router();
 
 
@@ -18,5 +19,7 @@ router.post('/cancelAppointment', apptController.cancelAppointment);
 // router.post('/changeAppointment', apptController.changeAppointment);
 router.get('/viewAppointments', apptController.viewAllAppointments);
 router.get('/viewActiveAppointments', apptController.viewActiveAppointments);
+
+router.get('/viewBilling', billController.viewBilling);
 
 module.exports = router;

@@ -22,6 +22,10 @@ router.get('/patient/appointmentHistory', (req,res)=>{
     res.render('patientAppointmentHistory');
 });
 
+router.get('/patient/billing', (req,res)=>{
+    res.render('patientBilling');
+});
+
 router.get('/login', (req,res)=>{
     res.render('login');
 });

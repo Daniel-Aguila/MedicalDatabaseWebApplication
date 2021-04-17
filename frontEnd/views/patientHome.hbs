@@ -17,9 +17,9 @@
             row.parentNode.removeChild(this.parentNode.parentNode);
             fetch('/auth/cancelAppointment', {method: 'POST'})
             };
-            
+
         appointmentID.textContent = item.appointmentID;
-        startTime.textContent = item.startTime;
+        startTime.textContent = parseISOString(item.startTime);
         doctorID.textContent = item.doctorID;      
         cancel.append(button);
       });
@@ -28,8 +28,15 @@
     async function getData(){
         const res = await fetch('/auth/viewActiveAppointments');
         const data = await res.json();
-        console.log(data);
         addTableData(data);
+    }
+
+    function parseISOString(s) {
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var b = s.split(/\D+/);
+        var d = new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])); 
+        function pad(n) {return (n<10? '0' :  '') + n};
+        return  d.getHours()+ ':' + d.getMinutes() + ' -- ' + days[d.getDay()] + ' ' + pad(d.getUTCMonth() + 1) + '/' + pad(d.getUTCDate()) + '/' + d.getUTCFullYear();
     }
 
 </script>
@@ -79,7 +86,7 @@
                     <ul>
                     <li><a href="/patient/scheduleAppointment">Schedule Appointment</a></li>
                     <li><a href="/patient/appointmentHistory">Appointment History</a></li>
-                    <li><a href="/">Billing (ADD LINK)</a></li>
+                    <li><a href="/patient/billing">Billing</a></li>
                     </ul>
                 </div>
             </div>
