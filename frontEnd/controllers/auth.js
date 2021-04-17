@@ -107,8 +107,9 @@ exports.login = async(req, res) =>{
 
 exports.doctorRegister = (req, res) => {
     console.log(req.body);
-    const { Speciality,firstName, lastName,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
+    const { Speciality, firstName, lastName,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
     let hashedPassword = ""
+    const isPrimary = true
     //Import database
     db.query('SELECT firstName FROM doctor WHERE firstName = ?', [firstName], async(error, results) => {
         if(error){
@@ -128,7 +129,7 @@ exports.doctorRegister = (req, res) => {
         //we are using await because it can take a bit to encrypt some passwords
         //we are using 8 rounds of encryption
 
-        db.query('INSERT INTO doctor SET ?', {Speciality:Speciality, firstName:firstName, lastName:lastName}, (error, results)=>{
+        db.query('INSERT INTO doctor SET ?', {Speciality:Speciality, isPrimary:isPrimary, firstName:firstName, lastName:lastName}, (error, results)=>{
             if(error){
                 console.log(error);
             }

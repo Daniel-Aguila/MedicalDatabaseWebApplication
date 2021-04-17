@@ -27,3 +27,7 @@ nav li a:hover{
     color: cyan;
     text-decoration: none;
 }
+
+input[type=checkbox]{
+    -webkit-appearance: none;
+}
