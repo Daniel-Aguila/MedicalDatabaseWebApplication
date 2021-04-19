@@ -11,10 +11,10 @@ const db = mysql.createConnection({
 
 exports.scheduleAppointment = (req,res)=>{
 
-    const {time, date, doctor} = req.body;
+    const {startTime, date, doctor} = req.body;
     console.log(time, date, doctor);
     res.render('patientScheduleAppointment', {
-        message: 'Appointment Scheduled successfully (No Database Insertion)'
+        message: 'Appointment Scheduled successfully'
     })
     // db.query('INSERT INTO appointments SET ?', req, async(error, results) => {
     //     if(error){
