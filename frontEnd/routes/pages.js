@@ -14,6 +14,18 @@ router.get('/login', (req,res)=>{
     res.render('login');
 });
 
+router.get('/homePageDoctor', (req,res)=>{
+    res.render('homePageDoctor');
+});
+
+router.get('/homePageStaff', (req,res)=>{
+    res.render('homePageDoctor');
+});
+
+router.get('/homePagePatient', (req,res)=>{
+    res.render('homePagePatient');
+});
+
 router.get('/login/doctorLogin', (req,res)=>{
     res.render('doctorLogin');
 });

@@ -59,7 +59,7 @@ exports.doctorLogin = async(req, res) =>{
     try {
         const { email, password } = req.body;
         if(!email || !password){
-            return res.status(400).render('login', {
+            return res.status(400).render('doctorLogin', {
                 message: 'Please provide an email and password'
             })
         }
@@ -91,7 +91,7 @@ exports.doctorLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/");
+                res.status(200).redirect("/homePageDoctor");
             }
         })
 
@@ -114,7 +114,7 @@ exports.staffLogin = async(req, res) =>{
             //doing the compare() compares the password typed in the login with the password(hashed) in the database
             if(!results || !(await bcrypt.compare(password, results[0].password))) {
             //compares if the email is wrong or if the password is wrong
-                res.status(401).render('login', {
+                res.status(401).render('staffLogin', {
                     message: 'Email or Password is incorrect'
                 })
             }
@@ -136,7 +136,7 @@ exports.staffLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/");
+                res.status(200).redirect("/homePageStaff");
             }
         })
 
@@ -159,7 +159,7 @@ exports.patientLogin = async(req, res) =>{
             //doing the compare() compares the password typed in the login with the password(hashed) in the database
             if(!results || !(await bcrypt.compare(password, results[0].password))) {
             //compares if the email is wrong or if the password is wrong
-                res.status(401).render('login', {
+                res.status(401).render('patientLogin', {
                     message: 'Email or Password is incorrect'
                 })
             }
@@ -181,7 +181,7 @@ exports.patientLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/");
+                res.status(200).redirect("/homePagePatient");
             }
         })
 
@@ -252,7 +252,7 @@ exports.doctorRegister = (req, res) => {
         }
 
         if(results.length > 0){
-            return res.render('register', {
+            return res.render('doctorRegister', {
                 message: 'That email is already in use'
             })
         }
