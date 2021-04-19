@@ -91,7 +91,7 @@ exports.doctorLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/homePageDoctor");
+                res.status(200).redirect("/login/homePageDoctor");
             }
         })
 
@@ -136,7 +136,7 @@ exports.staffLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/homePageStaff");
+                res.status(200).redirect("/login/homePageStaff");
             }
         })
 
@@ -181,7 +181,7 @@ exports.patientLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/homePagePatient");
+                res.status(200).redirect("/login/homePagePatient");
             }
         })
 

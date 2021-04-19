@@ -3,11 +3,11 @@ const authController = require('../controllers/auth');
 const apptController = require('../controllers/appt')
 const billController = require('../controllers/billing')
 const router = express.Router();
-router.post('/login/doctorLogin', authController.doctorLogin)
+router.post('/doctorLogin', authController.doctorLogin)
 
-router.post('/login/patientLogin', authController.patientLogin)
+router.post('/patientLogin', authController.patientLogin)
 
-router.post('/login/staffLogin', authController.staffLogin)
+router.post('/staffLogin', authController.staffLogin)
 
 router.post('/register/doctorRegister', authController.doctorRegister)
 

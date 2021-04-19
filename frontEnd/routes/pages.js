@@ -30,15 +30,15 @@ router.get('/login', (req,res)=>{
     res.render('login');
 });
 
-router.get('/homePageDoctor', (req,res)=>{
+router.get('/login/homePageDoctor', (req,res)=>{
     res.render('homePageDoctor');
 });
 
-router.get('/homePageStaff', (req,res)=>{
-    res.render('homePageDoctor');
+router.get('/login/homePageStaff', (req,res)=>{
+    res.render('homePageStaff');
 });
 
-router.get('/homePagePatient', (req,res)=>{
+router.get('/login/homePagePatient', (req,res)=>{
     res.render('homePagePatient');
 });
 
