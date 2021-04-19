@@ -64,7 +64,7 @@ exports.doctorLogin = async(req, res) =>{
             })
         }
 
-        db.query('SELECT * FROM user WHERE emailAddress = ?', [email], async(error, results)=>{
+        db.query('SELECT * FROM doctor WHERE email = ?', [email], async(error, results)=>{
             console.log(results);
             //doing the compare() compares the password typed in the login with the password(hashed) in the database
             if(!results || !(await bcrypt.compare(password, results[0].password))) {
@@ -109,7 +109,7 @@ exports.staffLogin = async(req, res) =>{
             })
         }
 
-        db.query('SELECT * FROM user WHERE emailAddress = ?', [email], async(error, results)=>{
+        db.query('SELECT * FROM staff WHERE email = ?', [email], async(error, results)=>{
             console.log(results);
             //doing the compare() compares the password typed in the login with the password(hashed) in the database
             if(!results || !(await bcrypt.compare(password, results[0].password))) {
@@ -154,7 +154,7 @@ exports.patientLogin = async(req, res) =>{
             })
         }
 
-        db.query('SELECT * FROM user WHERE emailAddress = ?', [email], async(error, results)=>{
+        db.query('SELECT * FROM patient WHERE email = ?', [email], async(error, results)=>{
             console.log(results);
             //doing the compare() compares the password typed in the login with the password(hashed) in the database
             if(!results || !(await bcrypt.compare(password, results[0].password))) {
@@ -277,8 +277,10 @@ exports.doctorRegister = (req, res) => {
         }
         //we are using await because it can take a bit to encrypt some passwords
         //we are using 8 rounds of encryption
-
-        db.query('INSERT INTO doctor SET ?', {Speciality:Speciality, isPrimary:isPrimary, firstName:firstName, lastName:lastName}, (error, results)=>{
+        let hashedPassword1 = await bcrypt.hash(password, 8);
+        console.log(hashedPassword);
+        hashedPassword = hashedPassword1
+        db.query('INSERT INTO doctor SET ?', {Speciality:Speciality, isPrimary:isPrimary, firstName:firstName, lastName:lastName, email:email, password:hashedPassword}, (error, results)=>{
             if(error){
                 console.log(error);
             }
@@ -291,9 +293,6 @@ exports.doctorRegister = (req, res) => {
 
         //we are using await because it can take a bit to encrypt some passwords
         //we are using 8 rounds of encryption
-        let hashedPassword1 = await bcrypt.hash(password, 8);
-        console.log(hashedPassword);
-        hashedPassword = hashedPassword1
         db.query('INSERT INTO user SET ?', {emailAddress: email, phoneNumber: phoneNumber, gender: gender, streetName: streetName, streetNumber: streetNumber, city: city, state: state, zipcode: zipcode, aptNum: aptNum, password: hashedPassword }, (error, results)=>{
             if(error){
                 console.log(error);
@@ -311,7 +310,7 @@ exports.doctorRegister = (req, res) => {
 exports.patientRegister = (req, res) => {
     console.log(req.body);
     const { firstName, lastName,dateOfBirth,bloodType,sex,insurance,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
-
+    let hashedPassword = ""
     //Import database
     db.query('SELECT firstName FROM patient WHERE firstName = ?', [firstName], async(error, results) => {
         if(error){
@@ -330,8 +329,10 @@ exports.patientRegister = (req, res) => {
         }
         //we are using await because it can take a bit to encrypt some passwords
         //we are using 8 rounds of encryption
-
-        db.query('INSERT INTO patient SET ?', {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, bloodType: bloodType, sex: sex, insurance: insurance}, (error, results)=>{
+        let hashedPassword1 = await bcrypt.hash(password, 8);
+        console.log(hashedPassword1);
+        hashedPassword = hashedPassword1
+        db.query('INSERT INTO patient SET ?', {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, bloodType: bloodType, sex: sex, insurance: insurance, email:email, password:hashedPassword}, (error, results)=>{
             if(error){
                 console.log(error);
             }
@@ -344,8 +345,6 @@ exports.patientRegister = (req, res) => {
 
         //we are using await because it can take a bit to encrypt some passwords
         //we are using 8 rounds of encryption
-        let hashedPassword = await bcrypt.hash(password, 8);
-        console.log(hashedPassword);
 
         db.query('INSERT INTO user SET ?', {emailAddress: email, phoneNumber: phoneNumber, gender: gender, streetName: streetName, streetNumber: streetNumber, city: city, state: state, zipcode: zipcode, aptNum: aptNum, password: hashedPassword }, (error, results)=>{
             if(error){
