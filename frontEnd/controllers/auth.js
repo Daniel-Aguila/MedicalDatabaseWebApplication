@@ -10,7 +10,7 @@ const db = mysql.createConnection({
 })
 
 
-//exports.login = async(req, res) =>{
+exports.login = async(req, res) =>{
 //    try {
 //        const { email, password } = req.body;
 //        if(!email || !password){
@@ -53,7 +53,7 @@ const db = mysql.createConnection({
 //    } catch(error){
 //        console.log(error);
 //    }
-//}
+}
 
 exports.doctorLogin = async(req, res) =>{
     try {
@@ -252,7 +252,7 @@ exports.register = (req, res) => {
 //            }
 //        })
 //    });
-//}
+}
 
 exports.doctorRegister = (req, res) => {
     console.log(req.body);
@@ -414,7 +414,6 @@ exports.staffRegister = (req, res) => {
         })
     });
 }
-
 //NOTE TO SELF - VERIFY THAT THE LOGINS WORK WITH THE REGISTRATION
 //DOCTOR - 
 //PATIENT - 
