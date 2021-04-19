@@ -40,7 +40,6 @@ router.get('/delete', (req,res)=>{
     res.render('./delete/staffDelete');
 });
 
-console.log(this.search);
 // create new staff
 router.post('/new', staffController.createNewStaff);
 
