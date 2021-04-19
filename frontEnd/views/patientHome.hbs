@@ -14,9 +14,16 @@
         button.value = "Cancel";
         button.onclick = function(){
             var row = this.parentNode.parentNode;
-            row.parentNode.removeChild(this.parentNode.parentNode);
-            fetch('/auth/cancelAppointment', {method: 'POST'})
-            };
+            console.log(JSON.stringify(item));
+            {{!-- row.parentNode.removeChild(row); --}}
+            fetch('/auth/cancelAppointment', {
+            method: 'POST', 
+            headers: {
+			"Content-Type": "application/json"
+		    },
+            body: JSON.stringify(item)});
+
+        };
 
         appointmentID.textContent = item.appointmentID;
         startTime.textContent = parseISOString(item.startTime);
@@ -52,7 +59,7 @@
         <h3>Medical Database</h3>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/">Logout</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
         </ul>
     </nav>
 
@@ -83,10 +90,10 @@
         </div>
             <div style="flex-grow: 1;" class="card">
                 <div class="card-body">
-                    <ul>
-                    <li><a href="/patient/scheduleAppointment">Schedule Appointment</a></li>
-                    <li><a href="/patient/appointmentHistory">Appointment History</a></li>
-                    <li><a href="/patient/billing">Billing</a></li>
+                    <ul style="list-style-type:none;" >
+                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/scheduleAppointment">Schedule Appointment</a></li>
+                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/appointmentHistory">Appointment History</a></li>
+                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/billing">Billing</a></li>
                     </ul>
                 </div>
             </div>

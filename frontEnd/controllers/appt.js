@@ -27,9 +27,8 @@ exports.scheduleAppointment = (req,res)=>{
 }
 
 exports.cancelAppointment = (req,res)=>{
-
-    const {appointmentID, startTime, doctorID} = req.body;
-    db.query('UPDATE FROM appointments WHERE appointmentID = ?', [{isCancelled:1}, appointmentID], async(error, results) => {
+    const {appointmentID, startTime, endTime, doctorID} = req.body;
+    db.query('UPDATE appointments SET ? WHERE appointmentID=?', [{isCancelled:1}, appointmentID], async(error, results) => {
         if(error){
             console.log(error);
         }
@@ -50,6 +49,7 @@ exports.viewAllAppointments = (req,res)=>{
 exports.viewActiveAppointments = (req,res)=>{
 
     const {patientID} = req.body;
+    console.log("HERE")
     db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
         res.json(results);
     });

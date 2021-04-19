@@ -181,7 +181,7 @@ exports.patientLogin = async(req, res) =>{
                 }
                 res.cookie('jwt', token, cookieOptions);
                 //res.json({ token });
-                res.status(200).redirect("/login/homePagePatient");
+                res.status(200).redirect("/patient/home");
             }
         })
 
