@@ -414,7 +414,3 @@ exports.staffRegister = (req, res) => {
         })
     });
 }
-//NOTE TO SELF - VERIFY THAT THE LOGINS WORK WITH THE REGISTRATION
-//DOCTOR - 
-//PATIENT - 
-//STAFF -
