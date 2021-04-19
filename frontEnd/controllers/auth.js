@@ -192,6 +192,20 @@ exports.patientLogin = async(req, res) =>{
 
 //exports.register = (req, res) => {
 //    console.log(req.body);
+exports.logout = async(req, res)=>{
+    const cookieOptions = {
+        expires: new Date(
+            Date.now() + process.env.JWT_COOKIE_EXPIRES + 2 * 1000
+        ),
+        httpOnly: true
+        }
+    res.cookie('jwt', 'logout', cookieOptions)
+
+    res.status(200).redirect('/');
+}
+
+exports.register = (req, res) => {
+    console.log(req.body);
     
     //const name = req.body.name;
     //const email = req.body.email;

@@ -38,7 +38,7 @@ Staff.getStaffByID = (id, result)=>{
             result(null, res);
             console.log("Staff fetched successfully");
         }
-    })
+    });
 }
 
 // create new staff
