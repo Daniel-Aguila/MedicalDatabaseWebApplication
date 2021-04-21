@@ -5,35 +5,25 @@
       const table = document.getElementById("tableBody");
       items.forEach( item => {
         let row = table.insertRow();
-        let appointmentID = row.insertCell(0);
-        let startTime = row.insertCell(1);
-        let doctorID = row.insertCell(2);
-        let cancel = row.insertCell(3);
-        var button = document.createElement("input");
-        button.type = "button";
-        button.value = "Cancel";
-        button.onclick = function(){
-            var row = this.parentNode.parentNode;
-            console.log(JSON.stringify(item));
-            {{!-- row.parentNode.removeChild(row); --}}
-            fetch('/auth/cancelAppointment', {
-            method: 'POST', 
-            headers: {
-			"Content-Type": "application/json"
-		    },
-            body: JSON.stringify(item)});
+        let officeID = row.insertCell(0);
+        let address = row.insertCell(1);
+        let phonenumber = row.insertCell(2);
+        let vaccineAvailable = row.insertCell(3);
+        let state = row.insertCell(4);
+        {{!-- let endTime = row.insertCell(3); --}}
 
-        };
-
-        appointmentID.textContent = item.appointmentID;
-        startTime.textContent = parseISOString(item.startTime);
-        doctorID.textContent = item.doctorID;      
-        cancel.append(button);
+            
+        officeID.textContent = item.officeID;
+        address.textContent = item.address;
+        phonenumber.textContent = item.phonenumber;
+        vaccineAvailable.textContent = item.vaccineAvailable;
+        state.textContent = item.state;
+        {{!-- endTime.textContent = parseISOString(item.endTime);  --}}
       });
     }
 
     async function getData(){
-        const res = await fetch('/auth/viewActiveAppointments');
+        const res = await fetch('/auth/viewOfficeReport/{{state}}/{{vaccineAvailable}}');
         const data = await res.json();
         addTableData(data);
     }
@@ -67,18 +57,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1 class="text-center">Home</h1>
+                <h1 class="text-center">Office Report</h1>
                 </div>
             </div>
         </div>
     </header>
     <div class="container" style="display: flex;">
-        <div style="width: 50%;" class="card">
-            <div style="overflow: auto;" class="card-body">
+        <div style="width: 100%;" class="card">
+            <div class="card-body">
                 <table class="table table-striped table-responsive" id="apptTable">
                     <thead>
                         <tr>
-                            <th>Appointment ID </th> <th>Time </th> <th>Doctor</th> <th></th>
+                            <th>Office ID</th> <th>Address</th> <th>Phone Number</th> <th>Vaccines Available</th> <th>State</th>
                         </tr>                
                     </thead>
                     <tbody id ='tableBody' class="card-body">
@@ -88,16 +78,6 @@
                 </table>
             </div>
         </div>
-            <div style="flex-grow: 1;" class="card">
-                <div class="card-body">
-                    <ul style="list-style-type:none;" >
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/scheduleAppointment">Schedule Appointment</a></li>
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/appointmentHistory">Appointment History</a></li>
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/reportAppointment">Generate Appointment Report</a></li>
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/billing">Billing</a></li>
-                    </ul>
-                </div>
-            </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>

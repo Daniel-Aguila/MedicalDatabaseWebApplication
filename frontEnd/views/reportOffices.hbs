@@ -21,15 +21,16 @@
                 Generate Report
             </div>
             <div class="card-body">
-                <form action="/auth/params/${startTime}/${endTime}" method="GET">
+                <form action="/auth/officeParams/${state}/${vaccineAvailable}" method="GET">
                     <div class="form-group">
-                        <label for="firstName">Start Date</label>
-                        <input type="date" class="form-control" id="startTime" name="startTime" required="true"/>
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state" minlength="2" maxlength="2" required="true"/>
+                        <small>Format: XX</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="lastName">End Date</label>
-                        <input type="date" class="form-control" id="endTime" name="endTime" required="true"/>
+                        <label for="vaccineAvailable">Vaccine Amount</label>
+                        <input type="text" class="form-control" id="vaccineAvailable" name="vaccineAvailable" minlength="1" required="true"/>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>

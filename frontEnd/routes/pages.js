@@ -18,7 +18,11 @@ router.get('/patient/reportAppointment', (req,res)=>{
     res.render('reportAppointment');
 });
 
-router.get('/patient/reportAppointmentRoute/:startTime/:endTime', (req,res)=>{
+router.get('/patient/reportOffices', (req,res)=>{
+    res.render('reportOffices');
+});
+
+router.get('/patient/reportAppointmentRoute', (req,res)=>{
     res.render('reportAppointmentRoute');
 });
 
@@ -28,6 +32,10 @@ router.get('/login/listOfDoctors', (req,res)=>{
 
 router.get('/login/listOfPatients', (req,res)=>{
     res.render('listOfPatients');
+});
+
+router.get('/patient/reportPatients', (req,res)=>{
+    res.render('reportPatients');
 });
 
 router.get('/patient/scheduleAppointment', (req,res)=>{
