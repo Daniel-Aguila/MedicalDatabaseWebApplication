@@ -50,7 +50,11 @@ router.get('/patient/billing', (req,res)=>{
     res.render('patientBilling');
 });
 
-router.get('/login', (req,res)=>{
+router.get('/patient/patientDetails', (req,res)=>{
+    res.render('patientDetails');
+});
+
+router.get('/login', (req,res)=>{   
     res.render('login');
 });
 

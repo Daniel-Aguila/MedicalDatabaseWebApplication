@@ -413,3 +413,123 @@ exports.staffRegister = (req, res) => {
         })
     });
 }
+
+exports.patientDetails = (req,res)=>{
+    console.log(req.body);
+    const { firstName, lastName,dateOfBirth,bloodType,sex,insurance,email,password, passwordConfirm, oldEmail} = req.body;
+    if(password){
+    let hashedPassword=""
+    }
+    console.log('SELECT email FROM patient WHERE email = ?', [oldEmail]);
+    db.query('SELECT email FROM patient WHERE email = ?', [oldEmail], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        if(password){
+            if(password !== passwordConfirm){
+                return res.render('patientDetails', {
+                    message: 'Passwords do not match'
+                });
+            }
+        }
+        //we are using await because it can take a bit to encrypt some passwords
+        //we are using 8 rounds of encryption
+        if(password){
+        let hashedPassword1 = await bcrypt.hash(password, 8);
+        console.log(hashedPassword1);
+        hashedPassword = hashedPassword1
+        }
+        if(firstName){
+        db.query('UPDATE patient SET firstName = ? WHERE email=?',[firstName,oldEmail], (error, results)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(results);
+                return res.render('patientDetails', {
+                    message: 'Updated Patient Details'
+                });
+            }
+        })
+    }
+        if(dateOfBirth){
+            db.query('UPDATE patient SET dateOfBirth = ? WHERE email=?', [dateOfBirth,oldEmail], (error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+        }
+        if(bloodType){
+            db.query('UPDATE patient SET bloodType = ? WHERE email=?',[bloodType,oldEmail],(error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+        }
+        if(sex){
+            db.query('UPDATE patient SET sex=? WHERE email=?', [sex,oldEmail], (error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+        }
+        if(insurance){
+            db.query('UPDATE patient SET insurance=? WHERE email=?',[insurance,oldEmail], (error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+        }
+        if(email){
+            db.query('UPDATE patient SET email = ? WHERE email=?', [email,oldEmail], (error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+            oldEmail=email
+        }
+        if(password){
+            db.query('UPDATE patient SET password = ? WHERE email=?', [hashedPassword,oldEmail], (error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+        }
+    });
+}
