@@ -63,7 +63,7 @@ exports.doctorLogin = async(req, res) =>{
                 message: 'Please provide an email and password'
             })
         }
-
+        
         db.query('SELECT * FROM doctor WHERE email = ?', [email], async(error, results)=>{
             console.log(results);
             //doing the compare() compares the password typed in the login with the password(hashed) in the database
