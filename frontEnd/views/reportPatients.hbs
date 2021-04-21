@@ -21,15 +21,20 @@
                 Generate Report
             </div>
             <div class="card-body">
-                <form action="/auth/params/${startTime}/${endTime}" method="GET">
+                <form action="/auth/doctorParams/${startTime}/${endTime}/${blood}" method="GET">
                     <div class="form-group">
-                        <label for="firstName">Start Date</label>
+                        <label for="firstName">Date of Birth Start Date</label>
                         <input type="date" class="form-control" id="startTime" name="startTime" required="true"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="lastName">End Date</label>
+                        <label for="lastName">Date of Birth End Date</label>
                         <input type="date" class="form-control" id="endTime" name="endTime" required="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bloodType">Blood Type</label>
+                        <input type="text" class="form-control" id="bloodType" name="bloodType" maxlength="2" minlength="1" required="true"/>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>

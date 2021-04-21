@@ -25,8 +25,15 @@ router.post('/scheduleAppointment', apptController.scheduleAppointment);
 router.post('/cancelAppointment', apptController.cancelAppointment);
 // router.post('/changeAppointment', apptController.changeAppointment);
 router.get('/viewAppointments', apptController.viewAllAppointments);
-router.post('/viewAppointmentByID', apptController.viewAppointmentByID);
+router.get('/viewAppointmentByID/?:startTime=?/?:endTime=?', apptController.viewAppointmentByID);
+router.get('/viewPatientReport/?:startTime=?/?:endTime=?/?:blood=?', apptController.viewPatientReport);
+router.get('/viewOfficeReport/?:state=?/?:vaccineAvailable=?', apptController.viewOfficeReport);
 router.get('/viewActiveAppointments', apptController.viewActiveAppointments);
+
+
+router.get('/params/?:startTime=?/?:endTime=?', apptController.params);
+router.get('/doctorParams/?:startTime=?/?:endTime=?/?:blood=?', apptController.doctorParams);
+router.get('/officeParams/?:state=?/?:vaccineAvailable=?', apptController.officeParams);
 
 router.get('/viewAllDoctors', apptController.viewAllDoctors);
 
