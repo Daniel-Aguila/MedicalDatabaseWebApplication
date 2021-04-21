@@ -8,30 +8,30 @@ const db = mysql.createConnection({
     user: 'test',
     password: 'bar',
     database: 'mydb'
-})
+});
 
 exports.scheduleAppointment = (req,res)=>{
 
-    const {time, date, doctor} = req.body;
-    console.log(time);
-    console.log(time, date, doctor);
-    let temp = date + " 10:23:21"
-    console.log(temp);
-    console.log('INSERT INTO appointments SET ?', {startTime:temp,createdDate:date});
-
-    db.query('SELECT firstName FROM doctor', (error,results) =>{
-        
-    });
-
-    db.query('INSERT INTO appointments SET ?', {startTime:temp,createdDate:date}, async(error, results) => {
+    const {startTime, date, doctor} = req.body; 
+    console.log(date, startTime);
+    
+    db.query('SELECT doctorID FROM doctor WHERE lastName = ?', [doctor], async(error, results) => {
         if(error){
             console.log(error);
         }
         else{
-            console.log(results);
-            res.render('patientScheduleAppointment', {
-                message: 'Appointment Scheduled successfully'
-            })
+            dateTime = date + ' ' + startTime;
+            console.log(dateTime);
+            db.query('INSERT INTO appointments SET ?', {doctorID:results[0].doctorID, startTime:dateTime}, async(error, results1) => {
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    res.render('patientScheduleAppointment', {
+                        message: 'Appointment Scheduled successfully'
+                    });
+                }
+            });
         }
     });
 }
@@ -162,8 +162,7 @@ exports.viewActiveAppointments = (req,res)=>{
     const {patientID} = req.body;
 
     console.log("HERE")
-//abf8cc8132b0a6342b1391cf00b0e2a26327ad09
-    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled = 1', (error, results)=>{
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
         res.json(results);
     });
 }
