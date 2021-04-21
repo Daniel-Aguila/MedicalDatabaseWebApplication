@@ -23,6 +23,8 @@ router.post('/homePageAfterLogin/patientRegister', authController.patientRegiste
 
 router.post('/scheduleAppointment', apptController.scheduleAppointment);
 router.post('/cancelAppointment', apptController.cancelAppointment);
+
+router.post('/patient/patientDetails', authController.patientDetails);
 // router.post('/changeAppointment', apptController.changeAppointment);
 router.get('/viewAppointments', apptController.viewAllAppointments);
 router.get('/viewAppointmentByID/?:startTime=?/?:endTime=?', apptController.viewAppointmentByID);
@@ -38,6 +40,7 @@ router.get('/officeParams/?:state=?/?:vaccineAvailable=?', apptController.office
 router.get('/viewAllDoctors', apptController.viewAllDoctors);
 
 router.get('/viewAllPatients', apptController.viewAllPatients);
+
 
 router.get('/viewBilling', billController.viewBilling);
 
