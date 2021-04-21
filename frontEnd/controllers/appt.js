@@ -8,23 +8,34 @@ const db = mysql.createConnection({
     user: 'test',
     password: 'bar',
     database: 'mydb'
-})
+});
 
 exports.scheduleAppointment = (req,res)=>{
 
-    const {startTime, date, doctor} = req.body;
-    console.log(time, date, doctor);
-    res.render('patientScheduleAppointment', {
-        message: 'Appointment Scheduled successfully'
-    })
-    // db.query('INSERT INTO appointments SET ?', req, async(error, results) => {
-    //     if(error){
-    //         console.log(error);
-    //     }
-    //     else{
-    //         console.log(results);
-    //     }
-    // });
+    const {startTime, date, doctor} = req.body; 
+    console.log(date, startTime);
+    
+    db.query('SELECT doctorID FROM doctor WHERE lastName = ?', [doctor], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        else{
+            dateTime = date + ' ' + startTime;
+            console.log(dateTime);
+            db.query('INSERT INTO appointments SET ?', {doctorID:results[0].doctorID, startTime:dateTime}, async(error, results1) => {
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results1);
+                    
+                    res.render('patientScheduleAppointment', {
+                        message: 'Appointment Scheduled successfully'
+                    });
+                }
+            });
+        }
+    });
 }
 
 exports.cancelAppointment = (req,res)=>{
@@ -152,7 +163,7 @@ exports.viewActiveAppointments = (req,res)=>{
 
     const {patientID} = req.body;
     console.log("HERE")
-    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled = 1', (error, results)=>{
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
         res.json(results);
     });
 }
