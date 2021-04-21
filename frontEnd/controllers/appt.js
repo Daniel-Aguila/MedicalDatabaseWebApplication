@@ -11,24 +11,33 @@ const db = mysql.createConnection({
 
 exports.scheduleAppointment = (req,res)=>{
 
-    const {startTime, date, doctor} = req.body;
+    const {time, date, doctor} = req.body;
+    console.log(time);
     console.log(time, date, doctor);
-    res.render('patientScheduleAppointment', {
-        message: 'Appointment Scheduled successfully'
-    })
-    // db.query('INSERT INTO appointments SET ?', req, async(error, results) => {
-    //     if(error){
-    //         console.log(error);
-    //     }
-    //     else{
-    //         console.log(results);
-    //     }
-    // });
+    let temp = date + " 10:23:21"
+    console.log(temp);
+    console.log('INSERT INTO appointments SET ?', {startTime:temp,createdDate:date});
+
+    db.query('SELECT firstName FROM doctor', (error,results) =>{
+        
+    });
+
+    db.query('INSERT INTO appointments SET ?', {startTime:temp,createdDate:date}, async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log(results);
+            res.render('patientScheduleAppointment', {
+                message: 'Appointment Scheduled successfully'
+            })
+        }
+    });
 }
 
 exports.cancelAppointment = (req,res)=>{
     const {appointmentID, startTime, endTime, doctorID} = req.body;
-    db.query('UPDATE appointments SET ? WHERE appointmentID=?', [{isCancelled:1}, appointmentID], async(error, results) => {
+    db.query('UPDATE appointments SET ? WHERE appointmentID=?', [{isCancelled:0}, appointmentID], async(error, results) => {
         if(error){
             console.log(error);
         }
@@ -77,8 +86,7 @@ exports.viewAppointmentByID = (req,res)=>{
 exports.viewActiveAppointments = (req,res)=>{
 
     const {patientID} = req.body;
-    console.log("HERE")
-    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled = 1', (error, results)=>{
         res.json(results);
     });
 }
