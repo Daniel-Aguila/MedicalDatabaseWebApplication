@@ -31,3 +31,8 @@ nav li a:hover{
 input[type=checkbox]{
     -webkit-appearance: none;
 }
+
+html body {
+    background-color: rgba(0,0,0,1.00);
+    background-image: url("https://physiology.utoronto.ca/sites/default/files/MHSc%20Data%20Pic.jpg");
+}
