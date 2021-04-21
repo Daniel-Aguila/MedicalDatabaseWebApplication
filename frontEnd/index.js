@@ -22,7 +22,7 @@ db.connect( (error) => {
     }
 })
 
-const PORT = 3002;
+const PORT = 5000;
 
 //publicDirectory is where you put any css or javascript files for the front end to use
 const publicDirectory = path.join(__dirname, './public')

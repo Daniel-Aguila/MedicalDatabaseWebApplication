@@ -14,6 +14,22 @@ router.get('/patient/home', (req,res)=>{
     res.render('patientHome');
 });
 
+router.get('/patient/reportAppointment', (req,res)=>{
+    res.render('reportAppointment');
+});
+
+router.get('/patient/reportAppointmentRoute/:startTime/:endTime', (req,res)=>{
+    res.render('reportAppointmentRoute');
+});
+
+router.get('/login/listOfDoctors', (req,res)=>{
+    res.render('listOfDoctors');
+});
+
+router.get('/login/listOfPatients', (req,res)=>{
+    res.render('listOfPatients');
+});
+
 router.get('/patient/scheduleAppointment', (req,res)=>{
     res.render('patientScheduleAppointment');
 });

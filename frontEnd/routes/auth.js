@@ -25,7 +25,12 @@ router.post('/scheduleAppointment', apptController.scheduleAppointment);
 router.post('/cancelAppointment', apptController.cancelAppointment);
 // router.post('/changeAppointment', apptController.changeAppointment);
 router.get('/viewAppointments', apptController.viewAllAppointments);
+router.post('/viewAppointmentByID', apptController.viewAppointmentByID);
 router.get('/viewActiveAppointments', apptController.viewActiveAppointments);
+
+router.get('/viewAllDoctors', apptController.viewAllDoctors);
+
+router.get('/viewAllPatients', apptController.viewAllPatients);
 
 router.get('/viewBilling', billController.viewBilling);
 

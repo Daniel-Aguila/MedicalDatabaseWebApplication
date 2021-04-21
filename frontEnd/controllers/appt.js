@@ -46,6 +46,34 @@ exports.viewAllAppointments = (req,res)=>{
     });
 }
 
+exports.viewAllDoctors = (req,res)=>{
+
+    const {doctorID} = req.body;
+    db.query('SELECT doctorID, firstName, lastName, Email FROM doctor', (error, results)=>{
+        res.json(results);
+    });
+}
+
+exports.viewAllPatients = (req,res)=>{
+
+    const {patientID} = req.body;
+    db.query('SELECT patientID, firstName, lastName, dateOfBirth, bloodType from patient', (error, results)=>{
+        res.json(results);
+    });
+}
+
+exports.viewAppointmentByID = (req,res)=>{
+
+    const {startTime, endTime} = req.body;
+    console.log("RUNS");
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE startTime BETWEEN ? AND ?',[startTime, endTime] , (error, results)=>{
+        res.json(results);
+        // res.render('reportAppointmentRoute', {
+        //     message: results
+        // })
+    });
+}
+
 exports.viewActiveAppointments = (req,res)=>{
 
     const {patientID} = req.body;
