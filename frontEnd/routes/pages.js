@@ -1,4 +1,5 @@
 const express = require('express');
+const authController = require('../controllers/auth');
 const router = express.Router();
 
 
@@ -10,19 +11,23 @@ router.get('/register', (req,res)=>{
     res.render('register');
 });
 
-router.get('/patient/home', (req,res)=>{
+router.get('/patient/home', authController.getUser, (req,res)=>{
     res.render('patientHome');
 });
 
-router.get('/patient/reportAppointment', (req,res)=>{
+router.get('/patient/reportAppointment', authController.getUser,(req,res)=>{
     res.render('reportAppointment');
+});
+
+router.get('/patient/reportAppointmentDoctor', authController.getUser,(req,res)=>{
+    res.render('reportAppointmentDoctor');
 });
 
 router.get('/patient/reportOffices', (req,res)=>{
     res.render('reportOffices');
 });
 
-router.get('/patient/reportAppointmentRoute', (req,res)=>{
+router.get('/patient/reportAppointmentRoute', authController.getUser,(req,res)=>{
     res.render('reportAppointmentRoute');
 });
 
@@ -38,15 +43,15 @@ router.get('/patient/reportPatients', (req,res)=>{
     res.render('reportPatients');
 });
 
-router.get('/patient/scheduleAppointment', (req,res)=>{
+router.get('/patient/scheduleAppointment', authController.getUser,(req,res)=>{
     res.render('patientScheduleAppointment');
 });
 
-router.get('/patient/appointmentHistory', (req,res)=>{
+router.get('/patient/appointmentHistory', authController.getUser,(req,res)=>{
     res.render('patientAppointmentHistory');
 });
 
-router.get('/patient/billing', (req,res)=>{
+router.get('/patient/billing', authController.getUser,(req,res)=>{
     res.render('patientBilling');
 });
 

@@ -74,7 +74,8 @@ exports.doctorLogin = async(req, res) =>{
                 })
             }
             else{
-                const id = results[0].id;
+                const id = results[0].doctorID;
+                console.log(id);
                 
                 //every user when they join creates a unique token
                 const token = jwt.sign({id: id}, process.env.JWT_SECRET, {
@@ -145,6 +146,50 @@ exports.staffLogin = async(req, res) =>{
     }
 }
 
+exports.infoGet = async(req, res) => {
+    if (req.cookies.jwt) {
+        try {
+            // console.log(req.cookies);
+            const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+            // const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+            console.log("runs");
+            if (decoded) {
+                console.log("DECODED!");
+                console.log("exporting json");
+                console.log(decoded); // bar
+                res.json(decoded);
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+}
+
+exports.getUser = async(req, res, next) => {
+    if (req.cookies.jwt) {
+        try {
+            // console.log(req.cookies);
+            const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+            // const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+            console.log("runs");
+            if (decoded) {
+                console.log("DECODED!");
+                if (decoded.type != "patient") {
+                    throw error = "Not a patient";
+                }
+                console.log(decoded); // bar
+                // res.json(decoded);
+                return next();
+            }
+        }
+        catch(error) {
+            console.log(error);
+            res.redirect('/');
+        }
+    }
+}
+
 exports.patientLogin = async(req, res) =>{
     try {
         const { email, password } = req.body;
@@ -164,10 +209,10 @@ exports.patientLogin = async(req, res) =>{
                 })
             }
             else{
-                const id = results[0].id;
-                
+                const id = results[0].patientID;
+                console.log("THIS IS THE ID: ",id);
                 //every user when they join creates a unique token
-                const token = jwt.sign({id: id}, process.env.JWT_SECRET, {
+                const token = jwt.sign({id: id, type: "patient"}, process.env.JWT_SECRET, {
                     expiresIn: process.env.JWT_EXPIRES_IN
                 });
 

@@ -6,20 +6,26 @@
       items.forEach( item => {
         let row = table.insertRow();
         let appointmentID = row.insertCell(0);
-        let startTime = row.insertCell(1);
-        let doctorID = row.insertCell(2);
+        let address = row.insertCell(1);
+        let startTime = row.insertCell(2);
+        let endTimeExpected = row.insertCell(3);
+        let firstName = row.insertCell(4);
+        let lastName = row.insertCell(5);
         {{!-- let endTime = row.insertCell(3); --}}
 
             
         appointmentID.textContent = item.appointmentID;
+        address.textContent = item.address;
         startTime.textContent = parseISOString(item.startTime);
-        doctorID.textContent = item.doctorID;
+        endTimeExpected.textContent = parseISOString(item.endTimeExpected);
+        firstName.textContent = item.firstName;
+        lastName.textContent = item.lastName;
         {{!-- endTime.textContent = parseISOString(item.endTime);  --}}
       });
     }
 
     async function getData(){
-        const res = await fetch('/auth/viewAppointmentByID/{{start}}/{{end}}');
+        const res = await fetch('/auth/viewAppointmentByIDTEMPpatient/{{start}}/{{end}}');
         const data = await res.json();
         addTableData(data);
     }
@@ -64,7 +70,7 @@
                 <table class="table table-striped table-responsive" id="apptTable">
                     <thead>
                         <tr>
-                            <th>Appointment ID</th> <th>Start Time</th> <th>Doctor</th>
+                            <th>Appointment ID</th> <th>Office Address</th> <th>Start Time</th> <th>End Time</th> <th>Doctor's First Name</th> <th>Doctor's Last Name</th>
                         </tr>                
                     </thead>
                     <tbody id ='tableBody' class="card-body">
