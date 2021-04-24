@@ -175,9 +175,9 @@ exports.getUser = async(req, res, next) => {
             console.log("runs");
             if (decoded) {
                 console.log("DECODED!");
-                if (decoded.type != "patient") {
+/*                if (decoded.type != "patient") {
                     throw error = "Not a patient";
-                }
+                }*/
                 console.log(decoded); // bar
                 // res.json(decoded);
                 return next();
