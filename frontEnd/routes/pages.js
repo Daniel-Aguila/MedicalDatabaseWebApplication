@@ -97,6 +97,10 @@ router.get('/register/patientRegister', (req,res)=>{
 
 router.get('/register/staffRegister', (req,res)=>{
     res.render('staffRegister');
+}); 
+
+router.get('/doctor/editSchedule', (req,res)=>{   
+    res.render('doctorEditSchedule');
 });
 
 module.exports = router;

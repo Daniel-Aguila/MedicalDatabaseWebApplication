@@ -56,4 +56,7 @@ router.get('/viewAllPatients', apptController.viewAllPatients);
 router.get('/viewBilling', billController.viewBilling);
 
 router.post('/register/staffRegister', authController.staffRegister)
+
+router.post('/doctor/changeWorkSched', authController.doctorChangeWorkSched);
+
 module.exports = router;

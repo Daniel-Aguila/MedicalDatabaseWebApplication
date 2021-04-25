@@ -22,7 +22,7 @@ exports.scheduleAppointment = (req,res)=>{
         else{
             dateTime = date + ' ' + startTime;
             console.log(dateTime);
-            db.query('INSERT INTO appointments SET ?', {doctorID:results[0].doctorID, startTime:dateTime}, async(error, results1) => {
+            db.query('INSERT INTO appointments SET ?', {doctorID:results[0].doctorID, startTime:dateTime, officeID:1}, async(error, results1) => {
                 if(error){
                     console.log(error);
                 }

@@ -175,9 +175,9 @@ exports.getUser = async(req, res, next) => {
             console.log("runs");
             if (decoded) {
                 console.log("DECODED!");
-                if (decoded.type != "patient") {
+/*                if (decoded.type != "patient") {
                     throw error = "Not a patient";
-                }
+                }*/
                 console.log(decoded); // bar
                 // res.json(decoded);
                 return next();
@@ -578,3 +578,40 @@ exports.patientDetails = (req,res)=>{
         }
     });
 }
+
+//doctor edit their schedule
+exports.doctorChangeWorkSched = (req,res)=>{
+    console.log(req.body);
+    const {state, office, startTime, endTime} = req.body;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+
+    if(state){
+        db.query('UPDATE doctorSchedule SET officeID = 3 WHERE doctorID = ?', [decoded.id], (error, results)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(results);
+                return res.render('doctorEditSchedule', {
+                    message: 'Updated work sched successfully'
+                });
+            }
+        });
+    }
+
+       /* if(dateOfBirth){
+            db.query('UPDATE patient SET dateOfBirth = ? WHERE email=?', [dateOfBirth,oldEmail], (error, results)=>{
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log(results);
+                    return res.render('patientDetails', {
+                        message: 'Updated Patient Details'
+                    });
+                }
+            })
+        }*/
+
+  
+} 

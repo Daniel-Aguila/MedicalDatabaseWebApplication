@@ -19,21 +19,20 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                Schedule Appointment
+                Change Work Schedule
             </div>
             <div class="card-body">
-                <form action="/auth/scheduleAppointment" method="POST">
+                <form action="/auth/doctor/changeWorkSched" method="POST">
 
                     <div class="form-group">
-                        <label for="doctor">Choose a doctor:</label>
-                        <select class="form-control" id="doctor" name="doctor" required="true">
-                            <option value="wick">Wick</option>
-                            <option value="guy">Guy</option>
-                            <option value="Williams">Williams</option>
+                        <label for="state">Choose a state:</label>
+                        <select class="form-control" id="state" name="state" required="true">
+                            <option value="TX">Texas</option>
+                            <option value="CA">California</option>
                         </select>
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="office">Choose an office:</label>
                         <select class="form-control" id="office" name="office" required="true">
                             <option value="1">123 Houston St.</option>
@@ -41,33 +40,18 @@
                         </select>
                     </div>
 
-                     <div class="form-group">
-                        <label for="date">Choose a date:</label>
-                        <input class="form-control" type="date" id="date" name="date" required="true" min=>
+                    <div class="form-group">
+                        <label for="time">Choose start time:</label>
+                        <input class="form-control" type="time" id="startTime" name="startTime" required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="time">Choose a time:</label>
-                        <input class="form-control" type="time" id="startTime" name="startTime" required="true" min="09:00" max="18:00">
+                        <label for="time">Choose end time:</label>
+                        <input class="form-control" type="time" id="endTime" name="endTime" required="true">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+                    <button type="submit" class="btn btn-primary">Submit Schedule</button>
                 </form>
-                <script>
-                    setDate();
-                    function setDate(){
-                        today = new Date();
-                        var dd = today.getDate();
-                        var mm = today.getMonth()+1;
-                        var yyyy = today.getFullYear();
-                        if(dd<10) dd='0'+dd;
-                        if(mm<10) mm='0'+mm;
-                        var currDate = (yyyy+'-'+mm+'-'+dd);
-                        document.getElementById("date").min = currDate;
-
-
-                    }
-                </script>
             </div>
         </div>
         {{#if message}}
