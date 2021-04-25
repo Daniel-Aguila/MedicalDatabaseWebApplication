@@ -586,13 +586,13 @@ exports.doctorChangeWorkSched = (req,res)=>{
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
 
     if(state){
-        db.query('UPDATE doctorSchedule SET officeID = 3 WHERE doctorID = ?', [decoded.id], (error, results)=>{
+        db.query('UPDATE doctorSchedule SET officeID = ? WHERE doctorID = ?', [office, decoded.id], (error, results)=>{
             if(error){
                 console.log(error);
             }
             else{
                 console.log(results);
-                return res.render('doctorEditSchedule', {
+                return res.render('doctorEditSchedule', {   
                     message: 'Updated work sched successfully'
                 });
             }
@@ -614,4 +614,24 @@ exports.doctorChangeWorkSched = (req,res)=>{
         }*/
 
   
+} 
+
+exports.staffChangeAvailVacc = (req,res)=>{
+    console.log(req.body);
+    const {office, vaccineAvailable} = req.body;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+
+    if(office){
+        db.query('UPDATE offices SET vaccineAvailable = ? WHERE officeID = ?', [vaccineAvailable, office], (error, results)=>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(results);
+                return res.render('staffChangeVaccine', {   
+                    message: 'Updated vaccines # successfully'
+                });
+            }
+        });
+    }
 } 

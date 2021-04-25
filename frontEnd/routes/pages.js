@@ -103,4 +103,8 @@ router.get('/doctor/editSchedule', (req,res)=>{
     res.render('doctorEditSchedule');
 });
 
+router.get('/staff/changeAvailVacc', (req,res)=>{
+    res.render('staffChangeVaccine');
+});
+
 module.exports = router;

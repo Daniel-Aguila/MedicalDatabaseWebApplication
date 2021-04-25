@@ -58,4 +58,6 @@ router.post('/register/staffRegister', authController.staffRegister)
 
 router.post('/doctor/changeWorkSched', authController.doctorChangeWorkSched);
 
+router.post('/staff/changeAvailVacc', authController.staffChangeAvailVacc);
+
 module.exports = router;
