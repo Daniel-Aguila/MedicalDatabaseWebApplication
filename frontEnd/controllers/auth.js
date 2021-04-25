@@ -301,20 +301,33 @@ exports.register = (req, res) => {
 
 exports.doctorRegister = (req, res) => {
     console.log(req.body);
-    const { Speciality, firstName, lastName,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
+    const { Speciality, firstName, isPrimary, lastName,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
     let hashedPassword = ""
-    const isPrimary = true
+    let is_Primary = false
+    if(isPrimary === "T" || isPrimary === "t"){
+        is_Primary = true
+    }
+    else if(isPrimary === "F" || isPrimary === "f"){
+        is_Primary = false
+    }
+    else{
+        
+        return res.render('doctorRegister', {
+            message: 'Invalid input for primary physician'
+        })
+    }
+    
     //Import database
     db.query('SELECT firstName FROM doctor WHERE firstName = ?', [firstName], async(error, results) => {
         if(error){
             console.log(error);
         }
 
-        if(results.length > 0){
-            return res.render('doctorRegister', {
-                message: 'That email is already in use'
-            })
-        }
+        // if(results.length > 0){
+        //     return res.render('doctorRegister', {
+        //         message: 'That email is already in use'
+        //     })
+        // }
         else if(password !== passwordConfirm){
             return res.render('doctorRegister', {
                 message: 'Passwords do not match'
@@ -325,7 +338,7 @@ exports.doctorRegister = (req, res) => {
         let hashedPassword1 = await bcrypt.hash(password, 8);
         console.log(hashedPassword);
         hashedPassword = hashedPassword1
-        db.query('INSERT INTO doctor SET ?', {Speciality:Speciality, isPrimary:isPrimary, firstName:firstName, lastName:lastName, email:email, password:hashedPassword}, (error, results)=>{
+        db.query('INSERT INTO doctor SET ?', {Speciality:Speciality, isPrimary:is_Primary, firstName:firstName, lastName:lastName, email:email, password:hashedPassword}, (error, results)=>{
             if(error){
                 console.log(error);
             }
@@ -335,7 +348,11 @@ exports.doctorRegister = (req, res) => {
         })
     });
     db.query('SELECT emailAddress FROM user WHERE emailAddress = ?', [email], async(error, results) => {
-
+        if(results){
+            return res.render('doctorRegister', {
+                message: 'Invalid email'
+            });
+        }
         //we are using await because it can take a bit to encrypt some passwords
         //we are using 8 rounds of encryption
         db.query('INSERT INTO user SET ?', {emailAddress: email, phoneNumber: phoneNumber, gender: gender, streetName: streetName, streetNumber: streetNumber, city: city, state: state, zipcode: zipcode, aptNum: aptNum, password: hashedPassword }, (error, results)=>{
@@ -363,7 +380,7 @@ exports.patientRegister = (req, res) => {
         }
 
         if(results.length > 0){
-            return res.render('register', {
+            return res.render('patientRegister', {
                 message: 'That email is already in use'
             })
         }
