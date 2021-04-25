@@ -33,7 +33,7 @@
     }
 
     async function getData(){
-        const res = await fetch('/auth/viewActiveAppointments');
+        const res = await fetch('/auth/viewActiveAppointmentsForDoctor');
         const data = await res.json();
         addTableData(data);
     }
@@ -44,6 +44,12 @@
         var d = new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])); 
         function pad(n) {return (n<10? '0' :  '') + n};
         return  d.getHours()+ ':' + d.getMinutes() + ' -- ' + days[d.getDay()] + ' ' + pad(d.getUTCMonth() + 1) + '/' + pad(d.getUTCDate()) + '/' + d.getUTCFullYear();
+    }
+
+    async function getName(){
+        const res = await fetch('/auth/getDoctorName');
+        const data = await res.json();
+        return "Welcome Doctor" + data;
     }
 
 </script>
@@ -67,7 +73,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1 class="text-center">Doctor Home</h1>
+                <h1 class="text-center">Welcome Doctor</h1>
                 </div>
             </div>
         </div>
