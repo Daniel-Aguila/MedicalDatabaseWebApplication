@@ -18,3 +18,11 @@ With a myriad of HTTP utility methods and middleware at your disposal, creating 
     npm install
 3) Create database and connection
 4) npm start
+
+5) cd frontend
+6) node index
+
+ you should see:
+
+Running on: 5000
+MySQL Connected...
