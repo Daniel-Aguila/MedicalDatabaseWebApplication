@@ -52,6 +52,7 @@ exports.viewAllAppointments = (req,res)=>{
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
     db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE patientID = ?', [decoded.id], (error, results)=>{
         res.json(results);
+        console.log(decoded.id);
     });
 }
 
@@ -231,13 +232,11 @@ exports.officeParams = (req,res)=>{
 
 exports.viewActiveAppointments = (req,res)=>{
 
-    const {patientID} = req.body;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
-    console.log("HERE")
-    console.log(req.body);
-    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE patientID = ? AND isCancelled IS NULL ', [decoded.id], (error, results)=>{
         res.json(results);
     });
+    
 }
 
 exports.viewActiveAppointmentsForDoctor = (req,res)=>{
