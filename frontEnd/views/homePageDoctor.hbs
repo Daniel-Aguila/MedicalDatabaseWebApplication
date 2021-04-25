@@ -7,7 +7,8 @@
         let row = table.insertRow();
         let appointmentID = row.insertCell(0);
         let startTime = row.insertCell(1);
-        let doctorID = row.insertCell(2);
+        {{!-- let doctorID = row.insertCell(2); --}}
+        let lastName = row.insertCell(2);
         let cancel = row.insertCell(3);
         var button = document.createElement("input");
         button.type = "button";
@@ -27,7 +28,8 @@
 
         appointmentID.textContent = item.appointmentID;
         startTime.textContent = parseISOString(item.startTime);
-        doctorID.textContent = item.doctorID;      
+        {{!-- doctorID.textContent = item.doctorID;       --}}
+        lastName.textContent = item.lastName;      
         cancel.append(button);
       });
     }
