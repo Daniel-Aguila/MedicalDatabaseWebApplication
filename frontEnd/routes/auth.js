@@ -31,16 +31,17 @@ router.get('/viewAppointmentByID/?:startTime=?/?:endTime=?', apptController.view
 router.get('/viewPatientReport/?:startTime=?/?:endTime=?/?:blood=?', apptController.viewPatientReport);
 router.get('/viewOfficeReport/?:state=?/?:vaccineAvailable=?', apptController.viewOfficeReport);
 router.get('/viewActiveAppointments', apptController.viewActiveAppointments);
-
+router.get('/viewActiveAppointmentsForDoctor', apptController.viewActiveAppointmentsForDoctor);
+router.get('/getDoctorName', apptController.getDoctorName);
 
 router.get('/params/?:startTime=?/?:endTime=?', apptController.params);
 
 // TEMP STUFF
 router.get('/paramsTEMP/?:startTime=?/?:endTime=?', apptController.paramsTEMP);
-router.get('/paramsTEMPpatient/?:startTime=?/?:endTime=?', apptController.paramsTEMPpatient);
+router.get('/paramsT{{!-- EMPpatient/?:startTime=?/?:endTime=?', apptController.paramsTEMPpatient);
 router.get('/viewAppointmentByIDTEMP/?:startTime=?/?:endTime=?', apptController.viewAppointmentByIDTEMP);
 router.get('/viewAppointmentByIDTEMPpatient/?:startTime=?/?:endTime=?', apptController.viewAppointmentByIDTEMPpatient);
-// TEMP STUFF
+// TEMP STUFF --}}
 
 router.get('/infoGet', authController.infoGet);
 

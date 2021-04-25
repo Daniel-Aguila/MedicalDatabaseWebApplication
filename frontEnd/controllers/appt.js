@@ -52,6 +52,7 @@ exports.viewAllAppointments = (req,res)=>{
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
     db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE patientID = ?', [decoded.id], (error, results)=>{
         res.json(results);
+        console.log(decoded.id);
     });
 }
 
@@ -231,11 +232,30 @@ exports.officeParams = (req,res)=>{
 
 exports.viewActiveAppointments = (req,res)=>{
 
-    const {patientID} = req.body;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE patientID = ? AND isCancelled IS NULL ', [decoded.id], (error, results)=>{
+        res.json(results);
+    });
+    
+}
 
-    console.log("HERE")
+exports.viewActiveAppointmentsForDoctor = (req,res)=>{
+
+    const {patientID} = req.body;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    console.log("DOCTOR ID: ", decoded.id);
     console.log(req.body);
-    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL', (error, results)=>{
+    db.query('SELECT appointments.appointmentID, appointments.startTime, appointments.endTime, appointments.doctorID, doctor.lastName  FROM appointments JOIN doctor ON appointments.doctorID=? AND doctor.doctorID=?', [decoded.id, decoded.id], (error, results)=>{
+        console.log(results);
+        res.json(results);
+    });
+}
+
+exports.getDoctorName = (req,res)=>{
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    console.log("DOCTOR ID: ", decoded.id);
+    console.log(req.body);
+    db.query('SELECT lastName FROM doctor WHERE doctorID = ?', [decoded.id], (error, results)=>{
         res.json(results);
     });
 }
