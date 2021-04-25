@@ -11,38 +11,51 @@
     <nav>
         <h3>Medical Database</h3>
         <ul>
-            <li><a href="/register">Home</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
         </ul>
     </nav>
 
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                Generate Report
+                Change Work Schedule
             </div>
             <div class="card-body">
-                <form action="/auth/doctorParams/${startTime}/${endTime}/${blood}" method="GET">
+                <form action="/auth/doctor/changeWorkSched" method="POST">
+
                     <div class="form-group">
-                        <label for="firstName">Date of Birth Start Date</label>
-                        <input type="date" class="form-control" id="startTime" name="startTime" required="true"/>
+                        <label for="state">Choose a state:</label>
+                        <select class="form-control" id="state" name="state" required="true">
+                            <option value="TX">Texas</option>
+                            <option value="CA">California</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="lastName">Date of Birth End Date</label>
-                        <input type="date" class="form-control" id="endTime" name="endTime" required="true"/>
+                        <label for="office">Choose an office:</label>
+                        <select class="form-control" id="office" name="office" required="true">
+                            <option value="1">123 Houston St.</option>
+                            <option value="2">145 Mt. Vernon</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="bloodType">Blood Type</label>
-                        <input type="text" class="form-control" id="bloodType" name="bloodType" maxlength="2" minlength="1" required="true"/>
+                        <label for="time">Choose start time:</label>
+                        <input class="form-control" type="time" id="startTime" name="startTime" required="true">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label for="time">Choose end time:</label>
+                        <input class="form-control" type="time" id="endTime" name="endTime" required="true">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Schedule</button>
                 </form>
             </div>
         </div>
         {{#if message}}
-            <h4 class="aler alert-danger mt-4">{{message}}</h4>
+            <h4 class="aler alert-success mt-4">{{message}}</h4>
         {{/if}}
     </div>
 
