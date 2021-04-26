@@ -4,8 +4,7 @@ Medical Clinic Database
 by Team-5: Clinton, Raymundo, Jake, Sevilay, Daniel
 
 ## Host requirements
-Our application stack interfaces MySQL database with a NodeJS API backend. 
-Front end uses ReactJS.
+Our application stack interfaces MySQL database with a NodeJS API backend.
 
 ## How to run it?
 
@@ -26,4 +25,6 @@ MySQL Connected...
 
 ## Current live server setup
 Our current set-up uses reverse proxy to forward these ports back to our domain at https://medicaldb.xyz/
+
+Our project's github: https://github.com/MJakeShapiro/MedicalDatabaseWebApplication
 

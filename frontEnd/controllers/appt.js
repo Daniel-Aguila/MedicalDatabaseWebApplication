@@ -65,7 +65,7 @@ exports.scheduleAppointment = (req,res)=>{
         else{
             dateTime = date + ' ' + startTime;
             console.log(dateTime);
-            db.query('INSERT INTO appointments SET ?', {doctorID:results[0].doctorID, startTime:dateTime, officeID:1}, async(error, results1) => {
+            db.query('INSERT INTO appointments SET ?', {doctorID:results[0].doctorID, patientID: decoded.id, startTime:dateTime, officeID:1}, async(error, results1) => {
                 if(error){
                     console.log(error);
                 }
@@ -81,7 +81,7 @@ exports.scheduleAppointment = (req,res)=>{
 
 exports.cancelAppointment = (req,res)=>{
     const {appointmentID, startTime, endTime, doctorID} = req.body;
-    db.query('UPDATE appointments SET ? WHERE appointmentID=?', [{isCancelled:0}, appointmentID], async(error, results) => {
+    db.query('UPDATE appointments SET ? WHERE appointmentID=?', [{isCancelled:1}, appointmentID], async(error, results) => {
         if(error){
             console.log(error);
         }
