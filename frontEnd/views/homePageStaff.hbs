@@ -33,7 +33,7 @@
     }
 
     async function getData(){
-        const res = await fetch('/auth/viewActiveAppointments');
+        const res = await fetch('/auth/viewActiveAppointmentsStaff');
         const data = await res.json();
         addTableData(data);
     }
@@ -94,9 +94,9 @@
                         <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/login/listOfDoctors">List of Doctors</a></li>
                         <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/reportOffices">Generate Office Report</a></li>
                         <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/staff/changeAvailVacc">Change Available Vaccines</a></li>
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/appointmentHistory">Appointment History</a></li>
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/reportAppointment">Appointment Report</a></li>
-                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/billing">Total Billing</a></li>
+                        <!-- <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/reportAppointment">Appointment Report</a></li>
+                        <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/billing">Total Billing</a></li> -->
+                         <li style="margin: 0 0 3px 0"><a class="btn btn-primary" href="/patient/appointmentHistory">Appointment History</a></li>
                     </ul>
                 </div>
             </div>

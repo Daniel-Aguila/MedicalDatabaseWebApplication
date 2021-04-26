@@ -148,7 +148,7 @@ exports.viewAllDoctors = (req,res)=>{
 exports.viewAllPatients = (req,res)=>{
 
     const {patientID} = req.body;
-    db.query('SELECT patientID, firstName, lastName, dateOfBirth, bloodType from patient', (error, results)=>{
+    db.query('SELECT patientID, firstName, lastName, email, dateOfBirth, bloodType from patient', (error, results)=>{
         res.json(results);
     });
 }
@@ -320,13 +320,22 @@ exports.viewActiveAppointments = (req,res)=>{
     
 }
 
+exports.viewActiveAppointmentsStaff = (req,res)=>{
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE isCancelled IS NULL ', [decoded.id], (error, results)=>{
+        res.json(results);
+    });
+    
+}
+
 exports.viewActiveAppointmentsForDoctor = (req,res)=>{
 
     const {patientID} = req.body;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
     console.log("DOCTOR ID: ", decoded.id);
     console.log(req.body);
-    db.query('SELECT appointments.appointmentID, appointments.startTime, appointments.endTime, appointments.doctorID, doctor.lastName  FROM appointments JOIN doctor ON appointments.doctorID=? AND doctor.doctorID=?', [decoded.id, decoded.id], (error, results)=>{
+    db.query('SELECT appointments.appointmentID, appointments.startTime, appointments.endTime, appointments.doctorID, doctor.lastName  FROM appointments JOIN doctor ON appointments.doctorID=? AND doctor.doctorID=? and isCancelled IS NULL', [decoded.id, decoded.id], (error, results)=>{
         console.log(results);
         res.json(results);
     });
