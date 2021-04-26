@@ -35,6 +35,10 @@ router.get('/login/listOfDoctors', (req,res)=>{
     res.render('listOfDoctors');
 });
 
+router.get('/doctor/appointmentHistory', (req,res)=>{
+    res.render('doctorAppointmentHistory');
+});
+
 router.get('/login/listOfPatients', (req,res)=>{
     res.render('listOfPatients');
 });

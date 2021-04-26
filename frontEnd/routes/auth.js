@@ -24,9 +24,15 @@ router.post('/homePageAfterLogin/patientRegister', authController.patientRegiste
 router.post('/scheduleAppointment', apptController.scheduleAppointment);
 router.post('/cancelAppointment', apptController.cancelAppointment);
 
+router.post('/specialistAssign', apptController.specialistAssign);
+router.post('/specialistUnassign', apptController.specialistUnassign);
+
 router.post('/patient/patientDetails', authController.patientDetails);
 // router.post('/changeAppointment', apptController.changeAppointment);
 router.get('/viewAppointments', apptController.viewAllAppointments);
+router.get('/viewAllAppointmentsDoctor', apptController.viewAllAppointmentsDoctor);
+
+
 router.get('/viewAppointmentByID/?:startTime=?/?:endTime=?', apptController.viewAppointmentByID);
 router.get('/viewPatientReport/?:startTime=?/?:endTime=?/?:blood=?', apptController.viewPatientReport);
 router.get('/viewOfficeReport/?:state=?/?:vaccineAvailable=?', apptController.viewOfficeReport);

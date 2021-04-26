@@ -48,11 +48,49 @@ exports.cancelAppointment = (req,res)=>{
     });
 }
 
+exports.specialistAssign = (req,res)=>{
+    const {firstName, lastName, shouldSeeSpecialist, patientID} = req.body;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    console.log(req.body);
+    console.log(decoded.id);
+    db.query('UPDATE patient SET shouldSeeSpecialist = 1 WHERE patientID=?', [patientID], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log(results);
+        }
+    });
+}
+
+exports.specialistUnassign = (req,res)=>{
+    const {firstName, lastName, shouldSeeSpecialist, patientID} = req.body;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    console.log(req.body);
+    console.log(decoded.id);
+    db.query('UPDATE patient SET shouldSeeSpecialist = 0 WHERE patientID=?', [patientID], async(error, results) => {
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log(results);
+        }
+    });
+}
+
 exports.viewAllAppointments = (req,res)=>{
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
     db.query('SELECT appointmentID, startTime, endTime, doctorID FROM appointments WHERE patientID = ?', [decoded.id], (error, results)=>{
         res.json(results);
         console.log(decoded.id);
+    });
+}
+
+exports.viewAllAppointmentsDoctor = (req,res)=>{
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    db.query('SELECT patient.firstName, patient.lastName, patient.shouldSeeSpecialist, patient.patientID FROM appointments INNER JOIN patient ON patient.patientID = appointments.patientID INNER JOIN doctor ON appointments.doctorID = doctor.doctorID WHERE doctor.doctorID = ?;', [decoded.id], (error, results)=>{
+        res.json(results);
+        console.log(results);
     });
 }
 
