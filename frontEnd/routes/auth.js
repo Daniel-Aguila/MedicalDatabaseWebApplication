@@ -44,7 +44,7 @@ router.get('/params/?:startTime=?/?:endTime=?', apptController.params);
 
 // TEMP STUFF
 router.get('/paramsTEMP/?:startTime=?/?:endTime=?', apptController.paramsTEMP);
-router.get('/paramsT{{!-- EMPpatient/?:startTime=?/?:endTime=?', apptController.paramsTEMPpatient);
+router.get('/paramsTEMPpatient/?:startTime=?/?:endTime=?', apptController.paramsTEMPpatient);
 router.get('/viewAppointmentByIDTEMP/?:startTime=?/?:endTime=?', apptController.viewAppointmentByIDTEMP);
 router.get('/viewAppointmentByIDTEMPpatient/?:startTime=?/?:endTime=?', apptController.viewAppointmentByIDTEMPpatient);
 // TEMP STUFF --}}
