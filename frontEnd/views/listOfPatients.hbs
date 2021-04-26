@@ -8,7 +8,7 @@
         let patientID = row.insertCell(0);
         let firstName = row.insertCell(1);
         let lastName = row.insertCell(2);
-        let Email = row.insertCell(3);
+        let email = row.insertCell(3);
         let dateOfBirth = row.insertCell(4);
         let bloodType = row.insertCell(5);
         {{!-- let endTime = row.insertCell(3); --}}
@@ -17,7 +17,7 @@
         patientID.textContent = item.patientID;
         firstName.textContent = item.firstName;
         lastName.textContent = item.lastName;
-        Email.textContent = item.Email;
+        email.textContent = item.email;
         dateOfBirth.textContent = parseISOString(item.dateOfBirth);
         bloodType.textContent = item.bloodType;
         {{!-- startTime.textContent = parseISOString(item.startTime); --}}
@@ -36,7 +36,7 @@
         var b = s.split(/\D+/);
         var d = new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])); 
         function pad(n) {return (n<10? '0' :  '') + n};
-        return  d.getHours()+ ':' + d.getMinutes() + ' -- ' + days[d.getDay()] + ' ' + pad(d.getUTCMonth() + 1) + '/' + pad(d.getUTCDate()) + '/' + d.getUTCFullYear();
+        return   days[d.getDay()] + ' ' + pad(d.getUTCMonth() + 1) + '/' + pad(d.getUTCDate()) + '/' + d.getUTCFullYear();
     }
 
 </script>

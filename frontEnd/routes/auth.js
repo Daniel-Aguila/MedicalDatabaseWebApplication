@@ -37,6 +37,7 @@ router.get('/viewAppointmentByID/?:startTime=?/?:endTime=?', apptController.view
 router.get('/viewPatientReport/?:startTime=?/?:endTime=?/?:blood=?', apptController.viewPatientReport);
 router.get('/viewOfficeReport/?:state=?/?:vaccineAvailable=?', apptController.viewOfficeReport);
 router.get('/viewActiveAppointments', apptController.viewActiveAppointments);
+router.get('/viewActiveAppointmentsStaff', apptController.viewActiveAppointmentsStaff);
 router.get('/viewActiveAppointmentsForDoctor', apptController.viewActiveAppointmentsForDoctor);
 router.get('/getDoctorName', apptController.getDoctorName);
 
