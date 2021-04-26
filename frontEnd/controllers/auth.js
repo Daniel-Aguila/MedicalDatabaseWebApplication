@@ -373,6 +373,7 @@ exports.patientRegister = (req, res) => {
     console.log(req.body);
     const { firstName, lastName,dateOfBirth,bloodType,sex,insurance,email,phoneNumber,gender,streetNumber,streetName, city, state, zipcode, aptNum, password, passwordConfirm } = req.body;
     let hashedPassword = ""
+    let shouldSeeSpecialist = 1
     //Import database
     db.query('SELECT firstName FROM patient WHERE firstName = ?', [firstName], async(error, results) => {
         if(error){
@@ -382,7 +383,7 @@ exports.patientRegister = (req, res) => {
         if(results.length > 0){
             return res.render('patientRegister', {
                 message: 'That email is already in use'
-            })
+            });
         }
         else if(password !== passwordConfirm){
             return res.render('patientRegister', {
@@ -394,7 +395,7 @@ exports.patientRegister = (req, res) => {
         let hashedPassword1 = await bcrypt.hash(password, 8);
         console.log(hashedPassword1);
         hashedPassword = hashedPassword1
-        db.query('INSERT INTO patient SET ?', {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, bloodType: bloodType, sex: sex, insurance: insurance, email:email, password:hashedPassword}, (error, results)=>{
+        db.query('INSERT INTO patient SET ?', {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, bloodType: bloodType, sex: sex, insurance: insurance, email:email, password:hashedPassword, shouldSeeSpecialist:shouldSeeSpecialist}, (error, results)=>{
             if(error){
                 console.log(error);
             }
