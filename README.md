@@ -1,15 +1,11 @@
-## About Node JS
+## Intro
+COSC 3380 - Dr. Uma Ramamurthy
+Medical Clinic Database
+by Team-5: Clinton, Raymundo, Jake, Sevilay, Daniel
 
-The API reference documentation provides detailed information about a function or object in Node.js. This documentation indicates what arguments a method accepts, the return value of that method, and what errors may be related to that method. It also indicates which methods are available for different versions of Node.js:
-
-- [Node JS Documentation](https://nodejs.org/en/docs/).
-
-## About ExpressJS
-
-Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
-With a myriad of HTTP utility methods and middleware at your disposal, creating a robust API is quick and easy.
-
-- [Getting Started with Express JS ](https://expressjs.com/en/starter/installing.html)
+## Host requirements
+Our application stack interfaces MySQL database with a NodeJS API backend. 
+Front end uses ReactJS.
 
 ## How to run it?
 
@@ -27,3 +23,7 @@ Running on: 5000
 MySQL Connected...
 
 6) go to http://localhost:5000/ on your browser
+
+## Current live server setup
+Our current set-up uses reverse proxy to forward these ports back to our domain at https://medicaldb.xyz/
+
