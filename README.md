@@ -4,8 +4,7 @@ Medical Clinic Database
 by Team-5: Clinton, Raymundo, Jake, Sevilay, Daniel
 
 ## Host requirements
-Our application stack interfaces MySQL database with a NodeJS API backend. 
-Front end uses ReactJS.
+Our application stack interfaces MySQL database with a NodeJS API backend.
 
 ## How to run it?
 
