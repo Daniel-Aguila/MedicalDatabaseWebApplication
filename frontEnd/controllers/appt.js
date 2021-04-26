@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { json } = require('body-parser');
+const nodemailer = require('nodemailer');
 
 const db = mysql.createConnection({
     host: '178.128.70.9',
@@ -11,10 +12,52 @@ const db = mysql.createConnection({
 });
 
 exports.scheduleAppointment = (req,res)=>{
+    //medicaldb3380@gmail.com
+    //medicalPassword
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'medicaldb3380@gmail.com',
+            pass: 'medicalPassword'
+        }
+    });
 
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+    let email = ""
+    let dateTime_
     const {startTime, date, doctor} = req.body; 
     console.log(date, startTime);
-    
+    dateTime = date + ' ' + startTime;
+    console.log(dateTime);
+    dateTime_ = dateTime
+    db.query('SELECT email FROM patient WHERE patientID = ?', [decoded.id], async(error, results)=>{
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log("RESULTS FOR THE EMAIL THINGY2:" + results[0].email);
+            email = results[0].email;
+            var mailOptions = {
+                from: 'medicaldb3380@gmail.com',
+                to: email,
+                subject: 'MedicalDB Appointment Confirmation',
+                text: 'You have a schedule appointment at ' + dateTime_ 
+            }
+
+            transporter.sendMail(mailOptions, function(error, result){
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    console.log('Email sent: ' + result.response);
+                }
+            })
+        }
+    })
+    console.log("RESULTS FOR THE EMAIL THINGY2: AFTER" + email);
+
+    console.log(date, startTime);
     db.query('SELECT doctorID FROM doctor WHERE lastName = ?', [doctor], async(error, results) => {
         if(error){
             console.log(error);
