@@ -27,3 +27,5 @@ MySQL Connected...
 ## Current live server setup
 Our current set-up uses reverse proxy to forward these ports back to our domain at https://medicaldb.xyz/
 
+Our project's github: https://github.com/MJakeShapiro/MedicalDatabaseWebApplication
+
